@@ -27,7 +27,11 @@
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0"></Grid>
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <Button Content="Baixar XML" Height="72" HorizontalAlignment="Left" Margin="0,6,0,0" Name="button1" VerticalAlignment="Top" Width="223" Click="button1_Click" />
+            <Button Content="Ler XML" Height="72" HorizontalAlignment="Left" Margin="229,6,0,0" Name="button2" VerticalAlignment="Top" Width="221" Click="button2_Click" />
+            <ScrollViewer Height="517" Margin="12,84,6,0" Name="scrollViewer1" VerticalAlignment="Top" />
+        </Grid>
     </Grid>
  
     <!--Sample code showing usage of ApplicationBar-->
