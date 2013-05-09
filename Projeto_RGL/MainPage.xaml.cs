@@ -42,9 +42,8 @@ namespace Projeto_RGL
         {
             try
             {
-                ReadXML ler = new ReadXML();
-                scrollViewer1.
-                txBoxXML.Text = ler.LerXML();
+                ReadXML ler = new ReadXML();                
+                txBoxXML.Text = ler.LerXML();                
             }
             catch (Exception err)
             {
