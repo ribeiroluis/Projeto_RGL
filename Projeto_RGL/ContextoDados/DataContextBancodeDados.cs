@@ -30,11 +30,6 @@ namespace Projeto_RGL.ContextoDados
         [Column]
         internal int IDCategoria;
 
-        private EntityRef<Catgoria> _idcategoria;
-
-        [Association(Storage = "_idcatergoria", ThisKey = "IDCategoria", 
-
-
         [Column(Name = "Nome", CanBeNull = false, DbType = "NVARCHAR(200)")]
         public string Nome
         {
@@ -94,6 +89,69 @@ namespace Projeto_RGL.ContextoDados
                 }
             }
         }
+        
+    }
+
+    [Table(Name = "Supermercado")]
+    public class Supermercado
+    {
+        private int idsupermercado;
+        private string nome;
+        private string endereco;
+        private int numero;
+
+        [Column(Name = "Numero",DbType = "INT")]
+        public int Numero
+        {
+            get { return numero; }
+            set 
+            {
+                if (numero != value)
+                {
+                    numero = value;
+                }                
+            }
+        }
+        
+        [Column(Name="Endereco",DbType = "NVARCHAR(200)")]
+        public string Endereco
+        {
+            get { return endereco; }
+            set 
+            {
+                if (endereco != value)
+                {
+                    endereco = value;
+                }                
+            }
+        }       
+                
+        [Column(Name = "Nome", DbType = "NVARCHAR(200)")]
+        public string Nome
+        {
+            get { return nome; }
+            set 
+            {
+                if (nome != value)
+                {
+                    nome = value;
+                }                
+            }
+        }
+
+        [Column(Name = "IDSupermercado", IsPrimaryKey = true, IsDbGenerated = true, DbType = "INT NOT NULL Identity", CanBeNull = false, AutoSync = AutoSync.OnInsert)]  
+        public int IDSupermercado
+        {
+            get { return idsupermercado; }
+            set 
+            {
+                if (idsupermercado != value)
+                {
+                    idsupermercado = value;
+                }                
+            }
+        }
+        
         
     }
 }
