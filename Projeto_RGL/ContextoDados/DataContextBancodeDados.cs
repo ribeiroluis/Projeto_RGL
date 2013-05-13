@@ -243,7 +243,7 @@ namespace Projeto_RGL.ContextoDados
             }
         }
         
-        [Column(Name = "idSupermercadoSupermercado", DbType = "INT NOT NULL", CanBeNull = false, Storage = )]
+        [Column(Name = "idSupermercadoSupermercado", DbType = "INT NOT NULL", CanBeNull = false)]
         public int idSupermercadoSupermercado
         {
             get { return _idsupermercado; }

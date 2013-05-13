@@ -10,27 +10,14 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
-using Projeto_RGL.DownloadXML;
-using Projeto_RGL.LerXML;
-
 
 namespace Projeto_RGL
 {
-    public partial class MainPage : PhoneApplicationPage
+    public partial class Modelo : PhoneApplicationPage
     {
-        // Constructor
-        public MainPage()
+        public Modelo()
         {
             InitializeComponent();
         }
-
-        private void TextBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-            {
-                NavigationService.Navigate(new Uri("/Resultados.xaml", UriKind.Relative));
-            }
-        }
-        
     }
 }
