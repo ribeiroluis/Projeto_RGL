@@ -1,29 +1,83 @@
 using System;
-/*using System.Windows.Controls;
+using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Ink;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using System.Windows.Data;*/
+using System.Windows.Data;
 using System.Data.Linq;
 using System.Data.Linq.Mapping;
 using System.Net;
 using System.Windows;
 using winphone;
+using System.Collections.Generic;
+using System.IO;
 
 namespace Projeto_RGL.ContextoDados
 {
-    internal class DataContextBancodeDados : DataContext
+    public class DataContextBancodeDados : DataContext
     {
         public DataContextBancodeDados()
-            : base(@"Data Source=isostore:/Supermercados.sdf") { }
-            //: base(@"/Supermercados.sdf") { }
+            //: base(@"Data Source=isostore:/Supermercados.sdf") { }
+            : base(@"/Supermercados.sdf") { }
+        public Table<Produtos> Produtos;
+        public Table<Categoria> Categoria;
+        public Table<Supermercado> Supermercado;
+        public Table<PrecoProtutoSupermercado> PrecoProdutoSupermercado;
     }
 
+    public class ViewModel
+    {
+        private DataContextBancodeDados SupermercadoDB;
+
+        private List<Produtos> produtos;
+        public List<Produtos> Produtos
+        {
+            get 
+            {
+                if (produtos == null)
+                {
+                    produtos = new List<Produtos>();
+                }
+                return produtos; 
+            }
+            
+        }
+        //// Continuar tabelas
+
+
+        public void CriarBD()
+        {
+            SupermercadoDB = new DataContextBancodeDados();
+            if (!SupermercadoDB.DatabaseExists())
+            {
+                SupermercadoDB.CreateDatabase();
+            }
+        }
+
+        public void InsereProdutos()
+        {
+            string[] arquivos = File.ReadAllLines(@"Produtos.txt");
+            foreach (var item in arquivos)
+            {
+                string[] aux = item.Split(';');
+                Produtos.Add(new Produtos
+                {
+                    IDProduto = int.Parse(aux[0]),
+                    Nome = aux[1],                    
+                });
+            }
+            SupermercadoDB.Produtos.InsertAllOnSubmit<Produtos>(Produtos);
+            SupermercadoDB.SubmitChanges();
+
+        }
+    }
+
+
     [Table(Name = "Produtos")]
-    internal class Produtos
+    public class Produtos
     {
         private int idproduto;
         private string codbarras;
@@ -84,7 +138,7 @@ namespace Projeto_RGL.ContextoDados
 
 
     [Table(Name = "Categoria")]
-    internal class Catgoria
+    public class Categoria
     {
         private int idcategoria;
         private string nome;
@@ -119,7 +173,7 @@ namespace Projeto_RGL.ContextoDados
 
 
     [Table(Name = "Supermercado")]
-    internal class Supermercado
+    public class Supermercado
     {
         private int idsupermercado;
         private string nome;
@@ -249,7 +303,7 @@ namespace Projeto_RGL.ContextoDados
 
 
     [Table(Name = "PrecoProdutoSupermercado")]
-    internal class PrecoProtutoSupermercado
+    public class PrecoProtutoSupermercado
     {
         private int _idproduto;
         private int _idsupermercado;
