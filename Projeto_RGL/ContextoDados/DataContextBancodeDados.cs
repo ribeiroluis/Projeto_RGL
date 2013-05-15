@@ -1,28 +1,29 @@
 using System;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
+/*using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Ink;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using System.Windows.Data;
+using System.Windows.Data;*/
 using System.Data.Linq;
 using System.Data.Linq.Mapping;
+using System.Net;
+using System.Windows;
+using winphone;
 
 namespace Projeto_RGL.ContextoDados
 {
-    public class DataContextBancodeDados : DataContext
+    internal class DataContextBancodeDados : DataContext
     {
         public DataContextBancodeDados()
-            //: base(@"Data Source=isostore:/Supermercados.sdf") { }
-            : base(@"/Supermercados.sdf") { }
+            : base(@"Data Source=isostore:/Supermercados.sdf") { }
+            //: base(@"/Supermercados.sdf") { }
     }
 
     [Table(Name = "Produtos")]
-    public class Produtos
+    internal class Produtos
     {
         private int idproduto;
         private string codbarras;
@@ -67,11 +68,23 @@ namespace Projeto_RGL.ContextoDados
             }
         }
 
+        private EntitySet<PrecoProtutoSupermercado> refIDProduto = new EntitySet<PrecoProtutoSupermercado>();
+        [Association(Name = "FK_Protudo_PrecoProdutoSupermercado", Storage = "refIDProduto", ThisKey = "IDProduto", OtherKey = "idProdutoProtuto")]
+        public EntitySet<PrecoProtutoSupermercado> FKIDProduto
+        {
+            get
+            {
+                return this.refIDProduto;
+            }
+        }
+
+        
+
     }
 
 
     [Table(Name = "Categoria")]
-    public class Catgoria
+    internal class Catgoria
     {
         private int idcategoria;
         private string nome;
@@ -104,8 +117,9 @@ namespace Projeto_RGL.ContextoDados
 
     }
 
+
     [Table(Name = "Supermercado")]
-    public class Supermercado
+    internal class Supermercado
     {
         private int idsupermercado;
         private string nome;
@@ -221,10 +235,21 @@ namespace Projeto_RGL.ContextoDados
             }
         }
 
+        private EntitySet<PrecoProtutoSupermercado> refIDSupermercado;
+        [Association(Name = "FK_Supermercado_PrecoProdutoSupermercado", Storage = "refIDSupermercado", ThisKey = "IDSupermercado", OtherKey = "idSupermercadoSupermercado")]
+        public EntitySet<PrecoProtutoSupermercado> FKIDSupermercado
+        {
+            get
+            {
+                return this.refIDSupermercado;
+            }
+        }
+
     }
 
+
     [Table(Name = "PrecoProdutoSupermercado")]
-    class Preco
+    internal class PrecoProtutoSupermercado
     {
         private int _idproduto;
         private int _idsupermercado;
@@ -255,12 +280,9 @@ namespace Projeto_RGL.ContextoDados
                 }
             }
         }
-
-        
-        
-        
+                
         [Column(Name = "idProdutoProtuto", DbType = "INT NOT NULL", CanBeNull = false)]
-        public int _IDProduto_Produto
+        public int idProdutoProduto
         {
             get { return _idproduto; }
             set
@@ -271,6 +293,25 @@ namespace Projeto_RGL.ContextoDados
                 }
             }
         }
+
+
+        private EntityRef<Produtos> idproduto;
+        [Association(ThisKey = "idProdutoProtuto", OtherKey = "IDProduto", Storage = "idproduto")]
+        public Produtos _Produtos 
+        { 
+            get { return idproduto.Entity; } 
+            set { idproduto.Entity = value; } 
+        }
+
+        private EntityRef<Supermercado> idsupermercado;
+        [Association(ThisKey = "idSupermercadoSupermercado", OtherKey = "IDSupermercado", Storage = "idsupermercado")]
+        public Supermercado _Supermercados
+        {
+            get { return idsupermercado.Entity; }
+            set { idsupermercado.Entity = value; }
+        }
+
+
 
         #region Associações
 
