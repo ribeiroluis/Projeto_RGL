@@ -14,12 +14,29 @@ using System.IO.IsolatedStorage;
 using System.IO;
 using System.Diagnostics;
 using System.Text;
+using System.Xml;
 
 namespace Projeto_RGL.BaixarArquivo
 {
     public class BaixarArquivo
     {
+        public BaixarArquivo()
+        {
+            var webClient = new WebClient();
+            webClient.DownloadStringCompleted += RequestCompleted;
+            webClient.DownloadStringAsync(new Uri("http://alcsistemas.heliohost.org/Arquivos/Produtos.xml"));
+        }
+        private void RequestCompleted(object sender, DownloadStringCompletedEventArgs e)
+        {
+            if (e.Error == null)
+            {
+                var feedXml = XDocument.Parse(e.Result);
+                
+            }
+        }
+
         
+        /*
         
         public BaixarArquivo()
         {
@@ -45,5 +62,6 @@ namespace Projeto_RGL.BaixarArquivo
             }
             MessageBox.Show("Baixado com sucesso");
         }
+         */
     }
 }
