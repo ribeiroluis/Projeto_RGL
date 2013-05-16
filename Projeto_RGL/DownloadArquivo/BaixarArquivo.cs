@@ -27,21 +27,14 @@ namespace Projeto_RGL.BaixarArquivo
             WebClient client = new WebClient();
             file.CreateDirectory("Arquivos");            
             client.OpenReadCompleted += new OpenReadCompletedEventHandler(client_OpenReadCompleted);
-            client.OpenReadAsync(new Uri("http://alcsistemas.heliohost.org/Arquivos/Precos.txt"));
-            MessageBox.Show("Baixado com sucesso");
-        }
-
-        void baixarProdutos()
-        {
+            client.OpenReadAsync(new Uri("http://alcsistemas.heliohost.org/Arquivos/Produtos.xml"));
             
         }
-
-
         void client_OpenReadCompleted(object sender, OpenReadCompletedEventArgs e)
         {
             var file = IsolatedStorageFile.GetUserStoreForApplication();
 
-            using (IsolatedStorageFileStream stream = new IsolatedStorageFileStream("Protudos.txt", FileMode.Create, file))
+            using (IsolatedStorageFileStream stream = new IsolatedStorageFileStream("Protudos.xml", FileMode.Create, file))
             {
                 byte[] buffer = new byte[1024];
                 while (e.Result.Read(buffer, 0, buffer.Length) > 0)
@@ -50,6 +43,7 @@ namespace Projeto_RGL.BaixarArquivo
                     Debug.WriteLine(Encoding.UTF8.GetString(buffer, 0, buffer.Length));
                 }
             }
+            MessageBox.Show("Baixado com sucesso");
         }
     }
 }

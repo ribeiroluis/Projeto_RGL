@@ -13,6 +13,7 @@ using System.IO.IsolatedStorage;
 using System.IO;
 using System.Diagnostics;
 using System.Text;
+using System.Collections.Generic;
 
 namespace Projeto_RGL.LerArquivo
 {
@@ -20,31 +21,37 @@ namespace Projeto_RGL.LerArquivo
     {
         public ReadArquivo()
         {
-            LerArquivo();
-           
-        }
 
-        public string [] LerArquivo()
+        }
+        /*public List<Task> GetTasks()
         {
-            var file = IsolatedStorageFile.GetUserStoreForApplication();
-            string[] _Arquivo = { "Não encontrado" };            
-            try
+            var tasks = new List<Task>();
+            using (IsolatedStorageFile store = IsolatedStorageFile.GetUserStoreForApplication())
             {
-                using (IsolatedStorageFileStream stream = new IsolatedStorageFileStream(@"Produto.txt", FileMode.Open, file))
+                if (store.FileExists(XmlFile))
                 {
-                    long length = stream.Length;
-                    byte[] decoded = new byte[length];
-                    stream.Read(decoded, 0, (int)length);
-                    Debug.WriteLine(Encoding.UTF8.GetString(decoded, 0, (int)length));
-                    return _Arquivo;
+                    //store.DeleteFile(XmlFile);
+                    //XDocument doc = XDocument.Load(store.OpenFile(XmlFile, FileMode.Open));
+                    using (var sr = new StreamReader(new IsolatedStorageFileStream(XmlFile, FileMode.Open, store)))
+                    {
+                        XDocument doc = XDocument.Load(sr);
+                        tasks = (from d in doc.Descendants("task")
+                                 select new Task
+                                 {
+                                     Category = (string)d.Attribute("category"),
+                                     Id = (string)d.Attribute("id"),
+                                     Name = (string)d.Element("name"),
+                                     CreateDate = (DateTime)d.Element("createdate"),
+                                     DueDate = (DateTime)d.Element("duedate"),
+                                     IsComplete = (bool)d.Element("isComplete")
+                                 }).ToList<Task>();
+                    }
                 }
             }
-            catch
-            {
-                return _Arquivo;
-            }
- 
+            return tasks;
         }
-        
+        */
     }
 }
+
+        
