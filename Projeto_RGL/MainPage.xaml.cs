@@ -10,8 +10,9 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
-using Projeto_RGL.DownloadXML;
-using Projeto_RGL.LerXML;
+using Projeto_RGL.BaixarArquivo;
+using Projeto_RGL.ContextoDados;
+using Projeto_RGL.LerArquivo;
 
 
 namespace Projeto_RGL
@@ -24,12 +25,10 @@ namespace Projeto_RGL
             InitializeComponent();
         }
 
-        private void TextBox_KeyDown(object sender, KeyEventArgs e)
+        private void button1_Click(object sender, RoutedEventArgs e)
         {
-            if (e.Key == Key.Enter)
-            {
-                NavigationService.Navigate(new Uri("/Resultados.xaml", UriKind.Relative));
-            }
+            BaixarArquivo.BaixarArquivo b = new BaixarArquivo.BaixarArquivo();
+            LerArquivo.ReadArquivo ler = new ReadArquivo();
         }
         
     }

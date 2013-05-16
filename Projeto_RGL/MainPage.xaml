@@ -26,15 +26,17 @@
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="1" Margin="12,17,0,531" Height="101">
+        <StackPanel x:Name="TitlePanel" Grid.Row="1" Margin="12,17,0,551" Height="81">
             <TextBlock x:Name="ApplicationTitle" Style="{StaticResource PhoneTextNormalStyle}" Height="34" HorizontalAlignment="Left"><Run Text="Qual o preço? "/><LineBreak/><Run/></TextBlock>
             <TextBlock x:Name="PageTitle" Style="{StaticResource PhoneTextTitle1Style}" FontSize="29.333" HorizontalAlignment="Center" VerticalAlignment="Center"><Run Text="Supermercados" /><Run Text=" - Produ" /><Run Text="t" /><Run Text="os" /></TextBlock>
-            <TextBlock TextWrapping="Wrap" Text="Mercado Mineiro ®" FontSize="13.333" Width="135" HorizontalAlignment="Right" VerticalAlignment="Top" />
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,130,12,-100" Height="619">
-        	<TextBox Margin="10,0,6,0" TextWrapping="Wrap" Text="Pesquisar..." VerticalAlignment="Top" KeyDown="TextBox_KeyDown" />
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,115,12,-100" Height="635">
+            <Button Content="Button" Height="72" HorizontalAlignment="Left" Margin="12,0,0,0" Name="button1" VerticalAlignment="Top" Width="160" Click="button1_Click" />
+            <ScrollViewer Height="550" HorizontalAlignment="Left" Margin="6,78,0,0" Name="scrollViewer1" VerticalAlignment="Top" Width="444">
+                <ListBox Height="100" Name="List" Width="440" />
+            </ScrollViewer>
         </Grid>
     </Grid>
  

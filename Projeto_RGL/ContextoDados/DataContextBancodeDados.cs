@@ -11,7 +11,6 @@ using System.Data.Linq;
 using System.Data.Linq.Mapping;
 using System.Net;
 using System.Windows;
-using winphone;
 using System.Collections.Generic;
 using System.IO;
 
@@ -20,8 +19,7 @@ namespace Projeto_RGL.ContextoDados
     public class DataContextBancodeDados : DataContext
     {
         public DataContextBancodeDados()
-            //: base(@"Data Source=isostore:/Supermercados.sdf") { }
-            : base(@"/Supermercados.sdf") { }
+            : base(@"Data Source=isostore:/Supermercados.sdf") { }
         public Table<Produtos> Produtos;
         public Table<Categoria> Categoria;
         public Table<Supermercado> Supermercado;
@@ -57,7 +55,7 @@ namespace Projeto_RGL.ContextoDados
             }
         }
 
-        public void InsereProdutos()
+        /*public void InsereProdutos()
         {
             string[] arquivos = File.ReadAllLines(@"Produtos.txt");
             foreach (var item in arquivos)
@@ -72,7 +70,7 @@ namespace Projeto_RGL.ContextoDados
             SupermercadoDB.Produtos.InsertAllOnSubmit<Produtos>(Produtos);
             SupermercadoDB.SubmitChanges();
 
-        }
+        }*/
     }
 
 

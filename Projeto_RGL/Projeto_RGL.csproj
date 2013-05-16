@@ -66,8 +66,8 @@
     </Compile>
     <Compile Include="Autocompletar.cs" />
     <Compile Include="ContextoDados\DataContextBancodeDados.cs" />
-    <Compile Include="DownloadXML\BaixarXML.cs" />
-    <Compile Include="LerXML\ReadXML.cs" />
+    <Compile Include="DownloadArquivo\BaixarArquivo.cs" />
+    <Compile Include="LerArquivo\ReadArquivo.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
