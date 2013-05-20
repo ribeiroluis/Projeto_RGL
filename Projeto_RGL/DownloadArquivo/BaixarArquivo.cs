@@ -1,67 +1,70 @@
-using System;
 using System.Net;
-using System.Net.Sockets;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Ink;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
-using System.Threading;
-using System.IO.IsolatedStorage;
-using System.IO;
-using System.Diagnostics;
-using System.Text;
-using System.Xml;
+using System;
+using System.Xml.Linq;
+using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
 
-namespace Projeto_RGL.BaixarArquivo
+
+namespace Projeto_RGL.BaixarArquivoProdutos
 {
-    public class BaixarArquivo
+
+    public class ProdutoXML
     {
-        public BaixarArquivo()
+        public string idProduto;
+        public string nome;
+        public string codbarras;
+    }
+
+
+    public class BaixarArquivoProdutos
+    {
+
+        public BaixarArquivoProdutos()
         {
             var webClient = new WebClient();
             webClient.DownloadStringCompleted += RequestCompleted;
             webClient.DownloadStringAsync(new Uri("http://alcsistemas.heliohost.org/Arquivos/Produtos.xml"));
+            //webClient.DownloadStringAsync(new Uri("http://localhost/SiteLocal/Arquivos/Produtos.xml"));
         }
+
         private void RequestCompleted(object sender, DownloadStringCompletedEventArgs e)
         {
+            resultado r = new resultado();
+
             if (e.Error == null)
             {
-                var feedXml = XDocument.Parse(e.Result);
-                
+                var result = (e.Result);
+                XDocument docxml = XDocument.Parse(result);
+                List<ProdutoXML> Lista = RetornaListaPreenchida(docxml);
             }
         }
 
-        
-        /*
-        
-        public BaixarArquivo()
+        private List<ProdutoXML> RetornaListaPreenchida(XDocument documentoxml)
         {
-            var file = IsolatedStorageFile.GetUserStoreForApplication();
-            WebClient client = new WebClient();
-            file.CreateDirectory("Arquivos");            
-            client.OpenReadCompleted += new OpenReadCompletedEventHandler(client_OpenReadCompleted);
-            client.OpenReadAsync(new Uri("http://alcsistemas.heliohost.org/Arquivos/Produtos.xml"));
+            List<ProdutoXML> ListadeProdutos = new List<ProdutoXML>();
             
-        }
-        void client_OpenReadCompleted(object sender, OpenReadCompletedEventArgs e)
-        {
-            var file = IsolatedStorageFile.GetUserStoreForApplication();
+            ProdutoXML produto;
 
-            using (IsolatedStorageFileStream stream = new IsolatedStorageFileStream("Protudos.xml", FileMode.Create, file))
+            XElement docelement = XElement.Parse(documentoxml.ToString());
+
+            var query = from p in documentoxml.Elements("Produto") select p;
+            
+            foreach (var e in query)
             {
-                byte[] buffer = new byte[1024];
-                while (e.Result.Read(buffer, 0, buffer.Length) > 0)
-                {
-                    stream.Write(buffer, 0, buffer.Length);
-                    Debug.WriteLine(Encoding.UTF8.GetString(buffer, 0, buffer.Length));
-                }
+                produto = new ProdutoXML();
+                produto.idProduto = e.Element("idProduto").Value;
+                produto.nome = e.Element("Nome").Value;
+                produto.codbarras = e.Element("CodBaras").Value;
+                
+                ListadeProdutos.Add(produto);
             }
-            MessageBox.Show("Baixado com sucesso");
+                
+
+            return ListadeProdutos;
         }
-         */
     }
 }
+
+        
+        
