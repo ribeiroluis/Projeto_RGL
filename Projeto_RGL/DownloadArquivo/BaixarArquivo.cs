@@ -6,7 +6,7 @@ using System.Collections;
 using System.Linq;
 
 
-namespace Projeto_RGL.BaixarArquivoProdutos
+namespace Projeto_RGL.BaixarArquivos
 {
 
     public class ProdutoXML
@@ -15,16 +15,18 @@ namespace Projeto_RGL.BaixarArquivoProdutos
         public string nome;
         public string codbarras;
     }
-
+    
 
     public class BaixarArquivoProdutos
     {
+        DateTime hora1 = DateTime.Now;
+        public List<ProdutoXML> Lista;
 
         public BaixarArquivoProdutos()
         {
             var webClient = new WebClient();
             webClient.DownloadStringCompleted += RequestCompleted;
-            webClient.DownloadStringAsync(new Uri("http://alcsistemas.heliohost.org/Arquivos/Produtos.xml"));
+            webClient.DownloadStringAsync(new Uri("http://alcsistemas.heliohost.org/Arquivos/Produtos.txt"));
             //webClient.DownloadStringAsync(new Uri("http://localhost/SiteLocal/Arquivos/Produtos.xml"));
         }
 
@@ -34,32 +36,32 @@ namespace Projeto_RGL.BaixarArquivoProdutos
 
             if (e.Error == null)
             {
-                var result = (e.Result);
-                XDocument docxml = XDocument.Parse(result);
-                List<ProdutoXML> Lista = RetornaListaPreenchida(docxml);
+                string[] result = (e.Result).Split('\n');
+                Lista = RetornaListaPreenchida(result);
             }
         }
 
-        private List<ProdutoXML> RetornaListaPreenchida(XDocument documentoxml)
+        private List<ProdutoXML> RetornaListaPreenchida(string[] Arquivo)
         {
             List<ProdutoXML> ListadeProdutos = new List<ProdutoXML>();
-            
+
             ProdutoXML produto;
 
-            XElement docelement = XElement.Parse(documentoxml.ToString());
-
-            var query = from p in documentoxml.Elements("Produto") select p;
-            
-            foreach (var e in query)
+            for (int i = 0; i < Arquivo.Length-1; i++)
             {
+                string[] aux = Arquivo[i].Split(';');
+
                 produto = new ProdutoXML();
-                produto.idProduto = e.Element("idProduto").Value;
-                produto.nome = e.Element("Nome").Value;
-                produto.codbarras = e.Element("CodBaras").Value;
-                
+                produto.idProduto = aux[0];
+                produto.nome = aux[1];
+                produto.codbarras = aux[2];
+
                 ListadeProdutos.Add(produto);
             }
-                
+
+            DateTime hora2 = DateTime.Now;
+
+            TimeSpan resultado = hora2 - hora1;
 
             return ListadeProdutos;
         }

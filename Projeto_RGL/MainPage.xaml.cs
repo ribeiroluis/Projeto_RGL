@@ -10,7 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
-using Projeto_RGL.BaixarArquivoProdutos;
+using Projeto_RGL.BaixarArquivos;
 using Projeto_RGL.ContextoDados;
 using Projeto_RGL.LerArquivo;
 
@@ -33,13 +33,15 @@ namespace Projeto_RGL
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
+            BaixarArquivoProdutos b = new BaixarArquivoProdutos();          
+            
+
             resultado r = new resultado();
             DateTime hora = DateTime.Now;
-            BaixarArquivoProdutos.BaixarArquivoProdutos b = new BaixarArquivoProdutos.BaixarArquivoProdutos();
-            
             DateTime hora2 = DateTime.Now;
             TimeSpan result = hora2 - hora;
             r.hora = result.Milliseconds.ToString() + " milesegundos";
+            
             List.Items.Add(r.hora);
         }
         
