@@ -1,18 +1,11 @@
 using System;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Ink;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 using System.Windows.Data;
 using System.Data.Linq;
 using System.Data.Linq.Mapping;
 using System.Net;
 using System.Windows;
 using System.Collections.Generic;
-using System.IO;
+using Projeto_RGL.BaixarArquivos;
 
 namespace Projeto_RGL.ContextoDados
 {
@@ -20,60 +13,16 @@ namespace Projeto_RGL.ContextoDados
     {
         public DataContextBancodeDados()
             : base(@"Data Source=isostore:/Supermercados.sdf") { }
+
         public Table<Produtos> Produtos;
-        public Table<Categoria> Categoria;
-        public Table<Supermercado> Supermercado;
-        public Table<PrecoProtutoSupermercado> PrecoProdutoSupermercado;
+        //public Table<Categoria> Categoria;
+        //public Table<Supermercado> Supermercado;
+        //public Table<PrecoProtutoSupermercado> PrecoProdutoSupermercado;
+
     }
 
-    public class ViewModel
-    {
-        private DataContextBancodeDados SupermercadoDB;
-
-        private List<Produtos> produtos;
-        public List<Produtos> Produtos
-        {
-            get 
-            {
-                if (produtos == null)
-                {
-                    produtos = new List<Produtos>();
-                }
-                return produtos; 
-            }
-            
-        }
-        //// Continuar tabelas
-
-
-        public void CriarBD()
-        {
-            SupermercadoDB = new DataContextBancodeDados();
-            if (!SupermercadoDB.DatabaseExists())
-            {
-                SupermercadoDB.CreateDatabase();
-            }
-        }
-
-        /*public void InsereProdutos()
-        {
-            string[] arquivos = File.ReadAllLines(@"Produtos.txt");
-            foreach (var item in arquivos)
-            {
-                string[] aux = item.Split(';');
-                Produtos.Add(new Produtos
-                {
-                    IDProduto = int.Parse(aux[0]),
-                    Nome = aux[1],                    
-                });
-            }
-            SupermercadoDB.Produtos.InsertAllOnSubmit<Produtos>(Produtos);
-            SupermercadoDB.SubmitChanges();
-
-        }*/
-    }
-
-
+   
+    #region Tabela Produtos
     [Table(Name = "Produtos")]
     public class Produtos
     {
@@ -107,7 +56,7 @@ namespace Projeto_RGL.ContextoDados
             }
         }
 
-        [Column(Name = "IDProduto", IsPrimaryKey = true, IsDbGenerated = true, DbType = "INT NOT NULL", CanBeNull = false)]
+        [Column(Name = "IDProduto", IsPrimaryKey = true, DbType = "INT NOT NULL", CanBeNull = false)]
         public int IDProduto
         {
             get { return idproduto; }
@@ -120,21 +69,25 @@ namespace Projeto_RGL.ContextoDados
             }
         }
 
-        private EntitySet<PrecoProtutoSupermercado> refIDProduto = new EntitySet<PrecoProtutoSupermercado>();
-        [Association(Name = "FK_Protudo_PrecoProdutoSupermercado", Storage = "refIDProduto", ThisKey = "IDProduto", OtherKey = "idProdutoProtuto")]
+        /*private EntitySet<PrecoProtutoSupermercado> refIDProduto = new EntitySet<PrecoProtutoSupermercado>();
+        [Association(Name = "FK_Protudo_PrecoProdutoSupermercado", Storage = "refIDProduto", ThisKey = "IDProduto", OtherKey = "idProdutoProduto")]
         public EntitySet<PrecoProtutoSupermercado> FKIDProduto
         {
             get
             {
                 return this.refIDProduto;
             }
-        }
+        }*/
 
         
 
     }
+    #endregion 
 
-
+    
+    #region fazer depois
+    
+    /*#region Tabela Catetoria
     [Table(Name = "Categoria")]
     public class Categoria
     {
@@ -168,8 +121,11 @@ namespace Projeto_RGL.ContextoDados
         }
 
     }
-
-
+    #endregion
+     */
+    
+    
+    /*#region Tabela Supermercado
     [Table(Name = "Supermercado")]
     public class Supermercado
     {
@@ -274,7 +230,7 @@ namespace Projeto_RGL.ContextoDados
             }
         }
 
-        [Column(Name = "IDSupermercado", IsPrimaryKey = true, IsDbGenerated = true, DbType = "INT NOT NULL", CanBeNull = false)]
+        [Column(Name = "IDSupermercado", IsPrimaryKey = true, DbType = "INT NOT NULL", CanBeNull = false)]
         public int IDSupermercado
         {
             get { return idsupermercado; }
@@ -287,7 +243,7 @@ namespace Projeto_RGL.ContextoDados
             }
         }
 
-        private EntitySet<PrecoProtutoSupermercado> refIDSupermercado;
+        /*private EntitySet<PrecoProtutoSupermercado> refIDSupermercado;
         [Association(Name = "FK_Supermercado_PrecoProdutoSupermercado", Storage = "refIDSupermercado", ThisKey = "IDSupermercado", OtherKey = "idSupermercadoSupermercado")]
         public EntitySet<PrecoProtutoSupermercado> FKIDSupermercado
         {
@@ -298,8 +254,10 @@ namespace Projeto_RGL.ContextoDados
         }
 
     }
-
-
+    #endregion
+     */
+    
+    /*#region Tabela PrecoProdutoSupermercado
     [Table(Name = "PrecoProdutoSupermercado")]
     public class PrecoProtutoSupermercado
     {
@@ -333,7 +291,7 @@ namespace Projeto_RGL.ContextoDados
             }
         }
                 
-        [Column(Name = "idProdutoProtuto", DbType = "INT NOT NULL", CanBeNull = false)]
+        [Column(Name = "idProdutoProduto", DbType = "INT NOT NULL", CanBeNull = false)]
         public int idProdutoProduto
         {
             get { return _idproduto; }
@@ -346,9 +304,10 @@ namespace Projeto_RGL.ContextoDados
             }
         }
 
+        #region Associações
 
-        private EntityRef<Produtos> idproduto;
-        [Association(ThisKey = "idProdutoProtuto", OtherKey = "IDProduto", Storage = "idproduto")]
+        /*private EntityRef<Produtos> idproduto;
+        [Association(ThisKey = "idProdutoProduto", OtherKey = "IDProduto", Storage = "idproduto")]
         public Produtos _Produtos 
         { 
             get { return idproduto.Entity; } 
@@ -363,18 +322,19 @@ namespace Projeto_RGL.ContextoDados
             set { idsupermercado.Entity = value; }
         }
 
-
-
-        #region Associações
-
-        /* Uma associação representa um relacionamento um-para-muitos em um banco de dados, 
+         * Uma associação representa um relacionamento um-para-muitos em um banco de dados, 
          * e é representado em LINQ to SQL por duas classes especiais - o EntityRef, 
          * que define o lado "um" da equação e do EntitySet que define o lado "muitos". 
          * No nosso exemplo, um PRECOPRODUTO pode ser atribuída um SUPERMERCADO, mas cada 
          * SUPERMERCADO pode conhecer vários PRECOPRODUTO. 
          * A maneira que nós representamos isso em nosso modelo de dados é definir uma propriedade 
-         * EntityRef na classe PRECOPRODUTO, e uma propriedade EntitySet na classe SUPERMERCATO.*/       
+         * EntityRef na classe PRECOPRODUTO, e uma propriedade EntitySet na classe SUPERMERCATO.       
 
         #endregion Associações
     }
+    #endregion
+     */
+
+    #endregion
+    
 }

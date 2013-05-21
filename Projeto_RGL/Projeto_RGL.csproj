@@ -50,8 +50,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Community.CsharpSqlite.SqlLiteClient.WP7">
+      <HintPath>..\Exemplos\SQL litle library\Community.CsharpSqlite.SqlLiteClient.WP7.dll</HintPath>
+    </Reference>
+    <Reference Include="Community.CsharpSqlite.WP7">
+      <HintPath>..\Exemplos\SQL litle library\Community.CsharpSqlite.WP7.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Phone" />
     <Reference Include="Microsoft.Phone.Interop" />
+    <Reference Include="Silverlight_ZXing_Core">
+      <HintPath>..\Exemplos\WP7_Barcode_Library.DLL V1.3 Beta Release\Silverlight_ZXing_Core.dll</HintPath>
+    </Reference>
     <Reference Include="system.data.linq" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
@@ -61,15 +70,19 @@
     <Reference Include="mscorlib.extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml.Serialization" />
+    <Reference Include="WP7_Barcode_Library">
+      <HintPath>..\Exemplos\WP7_Barcode_Library.DLL V1.3 Beta Release\WP7_Barcode_Library.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Autocompletar.cs" />
+    <Compile Include="BancodeDados.cs" />
+    <Compile Include="barcode\LerBarCode.cs" />
     <Compile Include="ContextoDados\DataContextBancodeDados.cs" />
     <Compile Include="DownloadArquivo\BaixarArquivo.cs" />
-    <Compile Include="LerArquivo\ReadArquivo.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -80,6 +93,7 @@
     <Compile Include="Resultados.xaml.cs">
       <DependentUpon>Resultados.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\ModelodeVisao.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
