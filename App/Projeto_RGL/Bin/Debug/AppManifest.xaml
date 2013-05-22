@@ -1,9 +1,0 @@
-﻿<Deployment xmlns="http://schemas.microsoft.com/client/2007/deployment" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" EntryPointAssembly="Projeto_RGL" EntryPointType="Projeto_RGL.App" RuntimeVersion="4.7.50308.0">
-  <Deployment.Parts>
-    <AssemblyPart x:Name="Projeto_RGL" Source="Projeto_RGL.dll" />
-    <AssemblyPart x:Name="Community.CsharpSqlite.SqlLiteClient.WP7" Source="Community.CsharpSqlite.SqlLiteClient.WP7.dll" />
-    <AssemblyPart x:Name="Community.CsharpSqlite.WP7" Source="Community.CsharpSqlite.WP7.dll" />
-    <AssemblyPart x:Name="Silverlight_ZXing_Core" Source="Silverlight_ZXing_Core.dll" />
-    <AssemblyPart x:Name="WP7_Barcode_Library" Source="WP7_Barcode_Library.dll" />
-  </Deployment.Parts>
-</Deployment>
