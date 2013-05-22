@@ -59,7 +59,8 @@ namespace Projeto_RGL.BaixarArquivos
                 ListadeProdutos.Add(produto);
             }
             //InsereProdutos(ListadeProdutos);
-            BancodeDados bd = new BancodeDados(ListadeProdutos);            
+            BancodeDadosProdutos bd = new BancodeDadosProdutos();
+            bd.CarregaLista(ListadeProdutos);
             
             return ListadeProdutos;
         }

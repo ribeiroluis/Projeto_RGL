@@ -60,29 +60,19 @@ namespace Projeto_RGL
             //ModelodeVisao db = new ModelodeVisao();
             //db.CriarBD();
             BaixarArquivoProdutos baixar = new BaixarArquivoProdutos();
-            
-            
+
+
         }
 
         private void button2_Click(object sender, RoutedEventArgs e)
         {
-            using (SqliteConnection conn = new SqliteConnection("Version=3,uri=file:Produto.db"))
-            {
-                conn.Open();
-                using (SqliteCommand cmd = conn.CreateCommand())
-                {
-                    cmd.CommandText = "SELECT * FROM Produto";
-                    using (SqliteDataReader reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            var bytes = (byte[])reader.GetValue(5);
-                        }
-                    }
-                    conn.Close();
-                }
-            }
+            BancodeDadosProdutos bd = new BancodeDadosProdutos();
+            List<BaixarArquivoProdutos.ProdutoXML> list = bd.PesquisaProduto();
 
+            foreach (var item in list)
+            {
+                List.Items.Add(item.nome);
+            }
         }
     }
 }

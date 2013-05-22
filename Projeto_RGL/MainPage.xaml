@@ -35,7 +35,7 @@
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,115,12,-100" Height="635">
             <Button Content="Baixar" Height="72" HorizontalAlignment="Left" Margin="12,0,0,0" Name="button1" VerticalAlignment="Top" Width="160" Click="button1_Click" />
             <ScrollViewer Height="550" HorizontalAlignment="Left" Margin="6,78,0,0" Name="scrollViewer1" VerticalAlignment="Top" Width="444">
-                <ListBox Height="439" Name="List" Width="440" ItemsSource="{Binding}" />
+                <ListBox Height="500" Name="List" Width="440" ItemsSource="{Binding}" />
             </ScrollViewer>
             <Button Content="Ler" Height="72" HorizontalAlignment="Left" Margin="219,0,0,0" Name="button2" VerticalAlignment="Top" Width="160" Click="button2_Click" />
         </Grid>
