@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Windows.Data;
 using System.Data.Linq;
 using System.Data.Linq.Mapping;
@@ -24,19 +24,19 @@ namespace Projeto_RGL
     [Table(Name = "Produtos")]
     public class ProdutoTabela
     {
-        private int idproduto;
-        private string codbarras;
-        private string nome;
+        private int _idproduto;
+        private string _codbarras;
+        private string _nome;
 
         [Column(Name = "Nome", CanBeNull = false, DbType = "NVARCHAR(200)")]
         public string Nome
         {
-            get { return nome; }
+            get { return _nome; }
             set
             {
-                if (nome != value)
+                if (_nome != value)
                 {
-                    nome = value;
+                    _nome = value;
                 }
             }
         }
@@ -44,25 +44,25 @@ namespace Projeto_RGL
         [Column(DbType = "NVARCHAR(20)", Name = "CodBarras")]
         public string CodigoBarras
         {
-            get { return codbarras; }
+            get { return _codbarras; }
             set
             {
-                if (codbarras != value)
+                if (_codbarras != value)
                 {
-                    codbarras = value;
+                    _codbarras = value;
                 }
             }
         }
 
-        [Column(Name = "IDProduto", IsPrimaryKey = true, DbType = "INT NOT NULL", CanBeNull = false)]
-        public int IDProduto
+        [Column(Name = "ID", IsPrimaryKey = true, DbType = "INT NOT NULL", CanBeNull = false)]
+        public int Id
         {
-            get { return idproduto; }
+            get { return _idproduto; }
             set
             {
-                if (idproduto != value)
+                if (_idproduto != value)
                 {
-                    idproduto = value;
+                    _idproduto = value;
                 }
             }
         }
@@ -71,18 +71,18 @@ namespace Projeto_RGL
     [Table(Name = "Categoria")]
     public class CategoriaTabela
     {
-        private int idcategoria;
-        private string nome;
+        private int _id;
+        private string _nome;
 
         [Column(Name = "Nome", DbType = "NVARCHAR(100)")]
         public string None
         {
-            get { return nome; }
+            get { return _nome; }
             set
             {
-                if (nome != value)
+                if (_nome != value)
                 {
-                    nome = value;
+                    _nome = value;
                 }
             }
         }
@@ -90,12 +90,12 @@ namespace Projeto_RGL
         [Column(Name = "IDCategoria", IsPrimaryKey = true, DbType = "INT NOT NULL", CanBeNull = false)]
         public int IDCategoria
         {
-            get { return idcategoria; }
+            get { return _id; }
             set
             {
-                if (idcategoria != value)
+                if (_id != value)
                 {
-                    idcategoria = value;
+                    _id = value;
                 }
             }
         }
@@ -103,35 +103,36 @@ namespace Projeto_RGL
     }
     
     [Table(Name = "Supermercado")]
-    public class SupermercadoTabela
+    public class SupermercadoTabela: INotifyPropertyChanged, INotifyPropertyChanging
     {
+   
         private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-        private int idsupermercado;
-        private string nome;
-        private string endereco;
-        private int numero;
-        private string bairro;
-        private string cidade;
-        private string uf;
-        private string telefone;
-        private EntitySet<PrecoProdutoSupermercado> chaveprimaria;
+        private int _idsupermercado;
+        private string _nome;
+        private string _endereco;
+        private int _numero;
+        private string _bairro;
+        private string _cidade;
+        private string _uf;
+        private string _telefone;
+        private EntitySet<PrecoProdutoSupermercado> _PrecoProduto;
 
         public SupermercadoTabela()
         {
-            this.chaveprimaria = new EntitySet<PrecoProdutoSupermercado>(new Action<PrecoProdutoSupermercado>
-                (this.attach_PrecoProduto), new Action<PrecoProdutoSupermercado>(this.detach_PrecoProduto));
+            this._PrecoProduto = new EntitySet<PrecoProdutoSupermercado>
+                (new Action<PrecoProdutoSupermercado>(this.attach_Supermercado), 
+                new Action<PrecoProdutoSupermercado>(this.detach_Supermercado));            
         }
-
-
+        
         [Column(Name = "Telefone", DbType = "NVARCHAR(10)")]
         public string Telefone
         {
-            get { return telefone; }
+            get { return _telefone; }
             set
             {
-                if (telefone != value)
+                if (_telefone != value)
                 {
-                    telefone = value;
+                    _telefone = value;
                 }
             }
         }
@@ -139,12 +140,12 @@ namespace Projeto_RGL
         [Column(Name = "UF", DbType = "NVARCHAR(2)")]
         public string UF
         {
-            get { return uf; }
+            get { return _uf; }
             set
             {
-                if (uf != value)
+                if (_uf != value)
                 {
-                    uf = value;
+                    _uf = value;
                 }
             }
         }
@@ -152,12 +153,12 @@ namespace Projeto_RGL
         [Column(Name = "Cidade", DbType = "NVARCHAR(50)")]
         public string Cidade
         {
-            get { return cidade; }
+            get { return _cidade; }
             set
             {
-                if (cidade != value)
+                if (_cidade != value)
                 {
-                    cidade = value;
+                    _cidade = value;
                 }
             }
         }
@@ -165,12 +166,12 @@ namespace Projeto_RGL
         [Column(Name = "Bairro", DbType = "NVARCHAR(50)")]
         public string Bairro
         {
-            get { return bairro; }
+            get { return _bairro; }
             set
             {
-                if (bairro != value)
+                if (_bairro != value)
                 {
-                    bairro = value;
+                    _bairro = value;
                 }
             }
         }
@@ -178,12 +179,12 @@ namespace Projeto_RGL
         [Column(Name = "Numero", DbType = "INT")]
         public int Numero
         {
-            get { return numero; }
+            get { return _numero; }
             set
             {
-                if (numero != value)
+                if (_numero != value)
                 {
-                    numero = value;
+                    _numero = value;
                 }
             }
         }
@@ -191,12 +192,12 @@ namespace Projeto_RGL
         [Column(Name = "Endereco", DbType = "NVARCHAR(200)")]
         public string Endereco
         {
-            get { return endereco; }
+            get { return _endereco; }
             set
             {
-                if (endereco != value)
+                if (_endereco != value)
                 {
-                    endereco = value;
+                    _endereco = value;
                 }
             }
         }
@@ -204,45 +205,60 @@ namespace Projeto_RGL
         [Column(Name = "Nome", DbType = "NVARCHAR(200)")]
         public string Nome
         {
-            get { return nome; }
+            get { return _nome; }
             set
             {
-                if (nome != value)
+                if (_nome != value)
                 {
-                    nome = value;
+                    _nome = value;
                 }
             }
         }
 
-        [Column(Name = "IDSupermercado", IsPrimaryKey = true, DbType = "INT NOT NULL", CanBeNull = false)]
-        public int IDSupermercado
+        [Column(Name = "ID", IsPrimaryKey = true, DbType = "INT NOT NULL", CanBeNull = false)]
+        public int Id
         {
-            get { return idsupermercado; }
+            get { return _idsupermercado; }
             set
             {
-                if (idsupermercado != value)
+                if (_idsupermercado != value)
                 {
-                    idsupermercado = value;
+                    _idsupermercado = value;
                 }
             }
         }
 
-        [Association(Name = "Chave_IDsupermercado", Storage = "chaveprimaria", ThisKey = "IDSupermercado", OtherKey = "idSupermercadoSupermercado", DeleteRule = "NO ACTION")]
-        public EntitySet<PrecoProdutoSupermercado> ChavePrimaria
+
+        [Association(Name = "FKSupermercado", Storage = "_PrecoProduto", ThisKey = "Id", OtherKey = "SupermercadoId", DeleteRule = "NO ACTION")]
+        public EntitySet<PrecoProdutoSupermercado> PrecoProduto
         {
             get
             {
-                return this.chaveprimaria;
+                return this._PrecoProduto;
             }
             set
             {
-                this.chaveprimaria.Assign(value);
+                this._PrecoProduto.Assign(value);
             }
         }
-                
-        
+
+        private void attach_Supermercado(PrecoProdutoSupermercado entidade)
+        {
+            this.SendPropertyChanging();
+            entidade.Supermercado = this;
+            
+        }
+
+        private void detach_Supermercado(PrecoProdutoSupermercado entidade)
+        {
+            this.SendPropertyChanging();
+            entidade.Supermercado = null;
+        }
+
         public event PropertyChangingEventHandler PropertyChanging;
+
         public event PropertyChangedEventHandler PropertyChanged;
+
         protected virtual void SendPropertyChanging()
         {
             if ((this.PropertyChanging != null))
@@ -250,6 +266,7 @@ namespace Projeto_RGL
                 this.PropertyChanging(this, emptyChangingEventArgs);
             }
         }
+
         protected virtual void SendPropertyChanged(String propertyName)
         {
             if ((this.PropertyChanged != null))
@@ -257,34 +274,83 @@ namespace Projeto_RGL
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-        private void attach_PrecoProduto(PrecoProdutoSupermercado entity)
-        {
-            this.SendPropertyChanging();
-            entity.Supermercado = this;
-        }
-        private void detach_PrecoProduto(PrecoProdutoSupermercado entity)
-        {
-            this.SendPropertyChanging();
-            entity.Supermercado = null;
-        }
-
-
     }
     
     [Table(Name = "PrecoProdutoSupermercado")]
     public class PrecoProdutoSupermercado
     {
+        private EntityRef<SupermercadoTabela> _Supermercado;
         private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-        private int _idproduto;
-        private int _idsupermercado;
-        private double preco;
-        private EntityRef<SupermercadoTabela> _FkIdSupermercado;
-
+        
+        
         public PrecoProdutoSupermercado()
         {
-            this._FkIdSupermercado = default(EntityRef<SupermercadoTabela>);            
+
+        }       
+        
+        private int _idproduto;
+        [Column(Name = "idProdutoProduto", DbType = "INT NOT NULL", CanBeNull = false)]
+        public int idProdutoProduto
+        {
+            get { return _idproduto; }
+            set
+            {
+                if (_idproduto != value)
+                {
+                    _idproduto = value;
+                }
+            }
+        }        
+        
+        private int _idsupermercado;
+        [Column(DbType = "INT NOT NULL", CanBeNull = false)]
+        public int SupermercadoId
+        {
+            get { return _idsupermercado; }
+            set
+            {
+                if (_idsupermercado != value)
+                {
+                    _idsupermercado = value;
+                }
+            }
+        }
+        [Association(Name = "FKSupermercado", Storage = "_Supermercado", ThisKey = "SupermercadoID", OtherKey = "Id", IsForeignKey = true)]
+        public SupermercadoTabela Supermercado
+        {
+            get
+            {
+                return this._Supermercado.Entity;
+            }
+            set
+            {
+                SupermercadoTabela previousValue = this._Supermercado.Entity;
+                if (((previousValue != value)
+                            || (this._Supermercado.HasLoadedOrAssignedValue == false)))
+                {
+                    this.SendPropertyChanging();
+                    if ((previousValue != null))
+                    {
+                        this._Supermercado.Entity = null;
+                        previousValue.PrecoProduto.Remove(this);
+                    }
+                    this._Supermercado.Entity = value;
+                    if ((value != null))
+                    {
+                        value.PrecoProduto.Add(this);
+                        this._idsupermercado = value.Id;
+                    }
+                    else
+                    {
+                        this._idsupermercado = default(int);
+                    }
+                    this.SendPropertyChanged("Country");
+                }
+            }
         }
 
+
+        private double preco;
         [Column(Name = "Preco", DbType = "DOUBLE NOT NULL", CanBeNull = false)]
         public double Valor
         {
@@ -298,69 +364,10 @@ namespace Projeto_RGL
             }
         }
 
-
-        [Column(Storage = "_idsupermercado", DbType = "INT NOT NULL", CanBeNull = false)]
-        public int idSupermercadoSupermercado
-        {
-            get { return _idsupermercado; }
-            set
-            {
-                if (_idsupermercado != value)
-                {
-                    _idsupermercado = value;
-                }
-            }
-        }
-
-        [Association(Name = "FK__SupermercadoTabela__0000000000000024", Storage = "_FkIdSupermercado", ThisKey = "idSupermercadoSupermercado", OtherKey = "IDSupermercado", IsForeignKey = true)]
-        public SupermercadoTabela Supermercado
-        {
-            get
-            {
-                return this._FkIdSupermercado.Entity;
-            }
-            set
-            {
-                SupermercadoTabela previousValue = this._FkIdSupermercado.Entity;
-                if (((previousValue != value)
-                            || (this._FkIdSupermercado.HasLoadedOrAssignedValue == false)))
-                {
-                    this.SendPropertyChanging();
-                    if ((previousValue != null))
-                    {
-                        this._FkIdSupermercado.Entity = null;
-                        previousValue.ChavePrimaria.Remove(this);
-                    }
-                    this._FkIdSupermercado.Entity = value;
-                    if ((value != null))
-                    {
-                        value.ChavePrimaria.Add(this);
-                        this._idsupermercado = value.IDSupermercado;
-                    }
-                    else
-                    {
-                        this._idsupermercado = default(int);
-                    }
-                    this.SendPropertyChanged("Country");
-                }
-            }
-        }
-
-        [Column(Name = "idProdutoProduto", DbType = "INT NOT NULL", CanBeNull = false)]
-        public int idProdutoProduto
-        {
-            get { return _idproduto; }
-            set
-            {
-                if (_idproduto != value)
-                {
-                    _idproduto = value;
-                }
-            }
-        }
-
         public event PropertyChangingEventHandler PropertyChanging;
+
         public event PropertyChangedEventHandler PropertyChanged;
+
         protected virtual void SendPropertyChanging()
         {
             if ((this.PropertyChanging != null))
@@ -368,6 +375,7 @@ namespace Projeto_RGL
                 this.PropertyChanging(this, emptyChangingEventArgs);
             }
         }
+
         protected virtual void SendPropertyChanged(String propertyName)
         {
             if ((this.PropertyChanged != null))
@@ -375,8 +383,10 @@ namespace Projeto_RGL
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+        
+       
 
-
+        
     }
 }
 
