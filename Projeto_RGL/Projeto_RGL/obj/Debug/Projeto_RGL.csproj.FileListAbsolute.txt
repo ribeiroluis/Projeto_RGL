@@ -10,3 +10,15 @@ C:\Users\LuisHenrique\Documents\Projetos\Projeto_RGL\AppNovo\Projeto_RGL\Projeto
 C:\Users\LuisHenrique\Documents\Projetos\Projeto_RGL\AppNovo\Projeto_RGL\Projeto_RGL\obj\Debug\Projeto_RGL.dll
 C:\Users\LuisHenrique\Documents\Projetos\Projeto_RGL\AppNovo\Projeto_RGL\Projeto_RGL\obj\Debug\Projeto_RGL.pdb
 C:\Users\LuisHenrique\Documents\Projetos\Projeto_RGL\AppNovo\Projeto_RGL\Projeto_RGL\obj\Debug\XapCacheFile.xml
+C:\Users\LuisHenrique\Documents\Projetos\Projeto_RGL\Projeto_RGL\Projeto_RGL\Bin\Debug\ApplicationIcon.png
+C:\Users\LuisHenrique\Documents\Projetos\Projeto_RGL\Projeto_RGL\Projeto_RGL\Bin\Debug\Background.png
+C:\Users\LuisHenrique\Documents\Projetos\Projeto_RGL\Projeto_RGL\Projeto_RGL\Bin\Debug\Projeto_RGL.dll
+C:\Users\LuisHenrique\Documents\Projetos\Projeto_RGL\Projeto_RGL\Projeto_RGL\Bin\Debug\Projeto_RGL.pdb
+C:\Users\LuisHenrique\Documents\Projetos\Projeto_RGL\Projeto_RGL\Projeto_RGL\Bin\Debug\AppManifest.xaml
+C:\Users\LuisHenrique\Documents\Projetos\Projeto_RGL\Projeto_RGL\Projeto_RGL\Bin\Debug\Projeto_RGL.xap
+C:\Users\LuisHenrique\Documents\Projetos\Projeto_RGL\Projeto_RGL\Projeto_RGL\obj\Debug\App.g.i.cs
+C:\Users\LuisHenrique\Documents\Projetos\Projeto_RGL\Projeto_RGL\Projeto_RGL\obj\Debug\MainPage.g.i.cs
+C:\Users\LuisHenrique\Documents\Projetos\Projeto_RGL\Projeto_RGL\Projeto_RGL\obj\Debug\Projeto_RGL.g.resources
+C:\Users\LuisHenrique\Documents\Projetos\Projeto_RGL\Projeto_RGL\Projeto_RGL\obj\Debug\Projeto_RGL.dll
+C:\Users\LuisHenrique\Documents\Projetos\Projeto_RGL\Projeto_RGL\Projeto_RGL\obj\Debug\Projeto_RGL.pdb
+C:\Users\LuisHenrique\Documents\Projetos\Projeto_RGL\Projeto_RGL\Projeto_RGL\obj\Debug\XapCacheFile.xml

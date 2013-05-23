@@ -34,28 +34,28 @@ namespace Projeto_RGL.Controles
 
         }
         
-        private List<Categoria> categoria;
-        public List<Categoria> Categoria
+        private List<CategoriaTabela> categoria;
+        public List<CategoriaTabela> Categoria
         {
             get
             {
                 if (categoria == null)
                 {
-                    categoria = new List<Categoria>();
+                    categoria = new List<CategoriaTabela>();
                 }
                 return categoria;
             }
 
         }
 
-        private List<Supermercado> supermercado;
-        public List<Supermercado> Supermercado
+        private List<SupermercadoTabela> supermercado;
+        public List<SupermercadoTabela> Supermercado
         {
             get
             {
                 if (supermercado == null)
                 {
-                    supermercado = new List<Supermercado>();
+                    supermercado = new List<SupermercadoTabela>();
                 }
                 return supermercado;
             }
