@@ -12,11 +12,13 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using System.Net.NetworkInformation;
 using System.ComponentModel;
+using Microsoft.Phone.Shell;
 
 namespace Projeto_RGL
 {
     public partial class MainPage : PhoneApplicationPage
     {
+
         // Constructor
         public MainPage()
         {
@@ -30,11 +32,8 @@ namespace Projeto_RGL
             }
             else
             {
-                MessageBox.Show("Você necessita de conexão para utilizar esta aplicação");
-                
+                MessageBox.Show("Você necessita de conexão para utilizar esta aplicação");                
             }
-            
-            
         }
 
         private bool Verificaconexao()
@@ -49,16 +48,18 @@ namespace Projeto_RGL
                 return false;
         }
 
-        private void button1_Click(object sender, RoutedEventArgs e)
+       
+        private void button1_Click_1(object sender, RoutedEventArgs e)
         {
+            listview.Items.Clear();
 
-            var lista = App.Visao.RetornaProdutos();
-            
+            var lista = App.Visao.PesquisaPreco(txNomeProduto.Text);
+
             foreach (var item in lista)
             {
                 listview.Items.Add(item.nome);
             }
-            
         }
+
     }
 }

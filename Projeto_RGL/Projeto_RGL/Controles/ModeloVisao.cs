@@ -152,6 +152,30 @@ namespace Projeto_RGL.Controles
             }
 
             return lista;
+        }     
+        
+        
+        
+        
+        public List<BaixarArquivoProduto.ProdutoTXT> PesquisaPreco(string Nome)
+        {
+            List<BaixarArquivoProduto.ProdutoTXT> list = new List<BaixarArquivoProduto.ProdutoTXT>();
+            BaixarArquivoProduto.ProdutoTXT p;
+
+
+            var produto = from pr in SupermercadoDB.Produto
+                          where pr.Nome.Contains(Nome)
+                          select pr;
+            foreach (var item in produto)
+            {
+                p = new BaixarArquivoProduto.ProdutoTXT();
+                p.nome = item.Nome;
+                list.Add(p);
+            }
+
+            return list;
         }
     }
+
+    
 }
