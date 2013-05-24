@@ -62,7 +62,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controles\BaixarArquivo.cs" />
+    <Compile Include="Controles\BaixarArquivoPreco.cs" />
+    <Compile Include="Controles\BaixarArquivoProduto.cs" />
+    <Compile Include="Controles\BaixarArquivoSupermercado.cs" />
     <Compile Include="Controles\BancoDadosDataContext.cs" />
     <Compile Include="Controles\ModeloVisao.cs" />
     <Compile Include="MainPage.xaml.cs">

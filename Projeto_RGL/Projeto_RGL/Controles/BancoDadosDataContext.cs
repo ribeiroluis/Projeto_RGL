@@ -15,9 +15,9 @@ namespace Projeto_RGL
             : base(@"Data Source=isostore:/Supermercados.sdf") { }
 
         public Table<ProdutoTabela> Produto;
-        //public Table<Categoria> Categoria;
+        public Table<CategoriaTabela> Categoria;
         public Table<SupermercadoTabela> Supermercado;
-        public Table<PrecoProdutoSupermercado> PrecoProdutoSupermercado;
+        public Table<PrecoProdutoTabela> PrecoProduto;
 
     }
 
@@ -103,10 +103,9 @@ namespace Projeto_RGL
     }
     
     [Table(Name = "Supermercado")]
-    public class SupermercadoTabela: INotifyPropertyChanged, INotifyPropertyChanging
+    public class SupermercadoTabela
     {
    
-        private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
         private int _idsupermercado;
         private string _nome;
         private string _endereco;
@@ -115,16 +114,12 @@ namespace Projeto_RGL
         private string _cidade;
         private string _uf;
         private string _telefone;
-        private EntitySet<PrecoProdutoSupermercado> _PrecoProduto;
 
         public SupermercadoTabela()
         {
-            this._PrecoProduto = new EntitySet<PrecoProdutoSupermercado>
-                (new Action<PrecoProdutoSupermercado>(this.attach_Supermercado), 
-                new Action<PrecoProdutoSupermercado>(this.detach_Supermercado));            
         }
         
-        [Column(Name = "Telefone", DbType = "NVARCHAR(10)")]
+        [Column(Name = "Telefone", DbType = "NVARCHAR(200)")]
         public string Telefone
         {
             get { return _telefone; }
@@ -228,69 +223,32 @@ namespace Projeto_RGL
             }
         }
 
-
-        [Association(Name = "FKSupermercado", Storage = "_PrecoProduto", ThisKey = "Id", OtherKey = "SupermercadoId", DeleteRule = "NO ACTION")]
-        public EntitySet<PrecoProdutoSupermercado> PrecoProduto
-        {
-            get
-            {
-                return this._PrecoProduto;
-            }
-            set
-            {
-                this._PrecoProduto.Assign(value);
-            }
-        }
-
-        private void attach_Supermercado(PrecoProdutoSupermercado entidade)
-        {
-            this.SendPropertyChanging();
-            entidade.Supermercado = this;
-            
-        }
-
-        private void detach_Supermercado(PrecoProdutoSupermercado entidade)
-        {
-            this.SendPropertyChanging();
-            entidade.Supermercado = null;
-        }
-
-        public event PropertyChangingEventHandler PropertyChanging;
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void SendPropertyChanging()
-        {
-            if ((this.PropertyChanging != null))
-            {
-                this.PropertyChanging(this, emptyChangingEventArgs);
-            }
-        }
-
-        protected virtual void SendPropertyChanged(String propertyName)
-        {
-            if ((this.PropertyChanged != null))
-            {
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
     }
-    
+
     [Table(Name = "PrecoProdutoSupermercado")]
-    public class PrecoProdutoSupermercado
+    public class PrecoProdutoTabela
     {
-        private EntityRef<SupermercadoTabela> _Supermercado;
-        private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-        
-        
-        public PrecoProdutoSupermercado()
+
+        public PrecoProdutoTabela()
         {
 
-        }       
+        }
+
+        private int _idTabela;
+        [Column(Name="ID", IsPrimaryKey = true, IsDbGenerated = true,DbType = "INT NOT NULL Identity", CanBeNull = false,AutoSync = AutoSync.OnInsert)]
+        public int ID
+        {
+            get { return _idTabela; }
+            set 
+            { 
+                if (_idTabela != value)
+                    _idTabela = value; 
+            }
+        }
         
         private int _idproduto;
-        [Column(Name = "idProdutoProduto", DbType = "INT NOT NULL", CanBeNull = false)]
-        public int idProdutoProduto
+        [Column(Name = "ProdutoID", DbType = "INT NOT NULL", CanBeNull = false)]
+        public int ProdutoID
         {
             get { return _idproduto; }
             set
@@ -303,8 +261,8 @@ namespace Projeto_RGL
         }        
         
         private int _idsupermercado;
-        [Column(DbType = "INT NOT NULL", CanBeNull = false)]
-        public int SupermercadoId
+        [Column(Name="SupermercadoID", DbType = "INT NOT NULL", CanBeNull = false)]
+        public int SupermercadoID
         {
             get { return _idsupermercado; }
             set
@@ -315,44 +273,10 @@ namespace Projeto_RGL
                 }
             }
         }
-        [Association(Name = "FKSupermercado", Storage = "_Supermercado", ThisKey = "SupermercadoID", OtherKey = "Id", IsForeignKey = true)]
-        public SupermercadoTabela Supermercado
-        {
-            get
-            {
-                return this._Supermercado.Entity;
-            }
-            set
-            {
-                SupermercadoTabela previousValue = this._Supermercado.Entity;
-                if (((previousValue != value)
-                            || (this._Supermercado.HasLoadedOrAssignedValue == false)))
-                {
-                    this.SendPropertyChanging();
-                    if ((previousValue != null))
-                    {
-                        this._Supermercado.Entity = null;
-                        previousValue.PrecoProduto.Remove(this);
-                    }
-                    this._Supermercado.Entity = value;
-                    if ((value != null))
-                    {
-                        value.PrecoProduto.Add(this);
-                        this._idsupermercado = value.Id;
-                    }
-                    else
-                    {
-                        this._idsupermercado = default(int);
-                    }
-                    this.SendPropertyChanged("Country");
-                }
-            }
-        }
-
 
         private double preco;
-        [Column(Name = "Preco", DbType = "DOUBLE NOT NULL", CanBeNull = false)]
-        public double Valor
+        [Column(Name = "Preco", DbType = "FLOAT NOT NULL", CanBeNull = false)]
+        public double Preco
         {
             get { return preco; }
             set
@@ -363,29 +287,6 @@ namespace Projeto_RGL
                 }
             }
         }
-
-        public event PropertyChangingEventHandler PropertyChanging;
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void SendPropertyChanging()
-        {
-            if ((this.PropertyChanging != null))
-            {
-                this.PropertyChanging(this, emptyChangingEventArgs);
-            }
-        }
-
-        protected virtual void SendPropertyChanged(String propertyName)
-        {
-            if ((this.PropertyChanged != null))
-            {
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-        
-       
-
         
     }
 }

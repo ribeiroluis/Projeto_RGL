@@ -62,14 +62,14 @@ namespace Projeto_RGL.Controles
             
         }
 
-        private List<PrecoProdutoSupermercado> preco;
-        public List<PrecoProdutoSupermercado> PrecoProdutoSupermercado
+        private List<PrecoProdutoTabela> preco;
+        public List<PrecoProdutoTabela> PrecoProduto
         {
             get
             {
                 if (preco == null)
                 {
-                    preco = new List<PrecoProdutoSupermercado>();
+                    preco = new List<PrecoProdutoTabela>();
                 }
                 return preco;
             }
@@ -91,29 +91,52 @@ namespace Projeto_RGL.Controles
                 SupermercadoDB.CreateDatabase();
         }
 
-        public void InsereProdutos(List<BaixarArquivoProdutos.ProdutoXML> _listProdutos)
+        public void InsereProdutos(List<BaixarArquivoProduto.ProdutoTXT> _listProdutos)
         {
             
             foreach (var item in _listProdutos)
             {
-                Produtos.Add(new ProdutoTabela { IDProduto = item.idProduto, Nome = item.nome, CodigoBarras = item.codbarras });
+                Produtos.Add(new ProdutoTabela { Id = item.idProduto, Nome = item.nome, CodigoBarras = item.codbarras });
             }
 
             SupermercadoDB.Produto.InsertAllOnSubmit<ProdutoTabela>(Produtos);
             SupermercadoDB.SubmitChanges();
+            MessageBox.Show("Banco de dados Produto atualizado!");
         }
 
-        
+        public void InsereSupermercados(List<BaixarArquivoSupermercado.SupermercadoTXT> _listSupermercado)
+        {
+            foreach (var item in _listSupermercado)
+            {
+                Supermercado.Add(new SupermercadoTabela { Id = item.idSupermercado, Nome = item.nome, Endereco = item.endereco, Telefone = item.telefone });
+            }
+
+            SupermercadoDB.Supermercado.InsertAllOnSubmit<SupermercadoTabela>(Supermercado);
+            SupermercadoDB.SubmitChanges();
+            MessageBox.Show("Banco de dados Supermercado atualizado!");
+        }
+
+        public void InserePreco(List<BaixarArquivoPreco.PrecoTXT> _listPreco)
+        {
+            foreach (var item in _listPreco)
+            {
+                PrecoProduto.Add(new PrecoProdutoTabela { SupermercadoID = item.idSupermercado, ProdutoID = item.idProduto, Preco = item.preco });
+            }
+
+            SupermercadoDB.PrecoProduto.InsertAllOnSubmit<PrecoProdutoTabela>(PrecoProduto);
+            SupermercadoDB.SubmitChanges();
+            MessageBox.Show("Banco de dados Preços atualizado!");
+        }
         
         /// <summary>
         /// Metodo para ler os dados, retornando ok, falta vizualizar os dados 
         /// </summary>
-        public List<BaixarArquivoProdutos.ProdutoXML> LoadData()
+        public List<BaixarArquivoProduto.ProdutoTXT> RetornaProdutos()
         {
             SupermercadoDB = new DataContextBancodeDados();
 
-            List<BaixarArquivoProdutos.ProdutoXML> lista = new List<BaixarArquivoProdutos.ProdutoXML>();
-            BaixarArquivoProdutos.ProdutoXML p;
+            List<BaixarArquivoProduto.ProdutoTXT> lista = new List<BaixarArquivoProduto.ProdutoTXT>();
+            BaixarArquivoProduto.ProdutoTXT p;
 
             var queryListaProdutos = from r in SupermercadoDB.Produto select new { r.Nome };
             
@@ -123,7 +146,7 @@ namespace Projeto_RGL.Controles
 
             foreach (var item in Query)
             {
-                p = new BaixarArquivoProdutos.ProdutoXML();
+                p = new BaixarArquivoProduto.ProdutoTXT();
                 p.nome = item.Nome;
                 lista.Add(p);
             }

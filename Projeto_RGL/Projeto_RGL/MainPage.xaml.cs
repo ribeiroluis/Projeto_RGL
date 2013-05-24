@@ -11,6 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using System.Net.NetworkInformation;
+using System.ComponentModel;
 
 namespace Projeto_RGL
 {
@@ -24,6 +25,13 @@ namespace Projeto_RGL
                 InitializeComponent();
                 App.Visao.CriarBD();
                 App.DownloadProdutos.Baixar();
+                App.DownloadSupermercado.Baixar();
+                App.DownloadPrecos.Baixar();
+            }
+            else
+            {
+                MessageBox.Show("Você necessita de conexão para utilizar esta aplicação");
+                
             }
             
             
@@ -43,8 +51,8 @@ namespace Projeto_RGL
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-             
-            var lista = App.Visao.LoadData();
+
+            var lista = App.Visao.RetornaProdutos();
             
             foreach (var item in lista)
             {

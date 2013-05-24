@@ -16,23 +16,23 @@ using System.Net.NetworkInformation;
 namespace Projeto_RGL
 {
 
-    public class BaixarArquivoProdutos
+    public class BaixarArquivoProduto
     {
-        public class ProdutoXML
+        public class ProdutoTXT
         {
             public int idProduto;
             public string nome;
             public string codbarras;
         }
 
-        public List<ProdutoXML> Lista;        
+        public List<ProdutoTXT> Lista;        
         
         public void Baixar()
         {
             var webClient = new WebClient();
             webClient.DownloadStringCompleted += RequestCompleted;
             webClient.DownloadStringAsync(new Uri("http://alcsistemas.heliohost.org/Arquivos/Produtos.txt"));
-            //webClient.DownloadStringAsync(new Uri("http://localhost/SiteLocal/Arquivos/Produtos."));
+            //webClient.DownloadStringAsync(new Uri("http://localhost/SiteLocal/Arquivos/Produtos.txt"));
         }
 
         private void RequestCompleted(object sender, DownloadStringCompletedEventArgs e)
@@ -42,22 +42,21 @@ namespace Projeto_RGL
                 string[] result = (e.Result).Split('\n');
                 Lista = RetornaListaPreenchida(result);
                 App.Visao.InsereProdutos(Lista);
-                MessageBox.Show("Baixado com sucesso");
             }
 
         }
 
-        private List<ProdutoXML> RetornaListaPreenchida(string[] Arquivo)
+        private List<ProdutoTXT> RetornaListaPreenchida(string[] Arquivo)
         {
-            List<ProdutoXML> ListadeProdutos = new List<ProdutoXML>();
+            List<ProdutoTXT> ListadeProdutos = new List<ProdutoTXT>();
 
-            ProdutoXML produto;
+            ProdutoTXT produto;
 
             for (int i = 0; i < Arquivo.Length - 1; i++)
             {
                 string[] aux = Arquivo[i].Split(';');
 
-                produto = new ProdutoXML();
+                produto = new ProdutoTXT();
                 produto.idProduto = int.Parse(aux[0]);
                 produto.nome = aux[1];
                 produto.codbarras = aux[2];
@@ -65,6 +64,7 @@ namespace Projeto_RGL
             }
             return ListadeProdutos;
         }
+        
     }
 }
 

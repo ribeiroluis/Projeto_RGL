@@ -39,19 +39,48 @@ namespace Projeto_RGL
             }
         }
 
-        private static BaixarArquivoProdutos baixar;
+        private static BaixarArquivoProduto baixar;
 
-        public static BaixarArquivoProdutos DownloadProdutos
+        public static BaixarArquivoProduto DownloadProdutos
         {
             get
             {
                 if (baixar == null)
                 {
-                    baixar = new BaixarArquivoProdutos();
+                    baixar = new BaixarArquivoProduto();
                 }
                 return baixar;
             }
         }
+
+        private static BaixarArquivoSupermercado baixarsupermercado;
+
+        public static BaixarArquivoSupermercado DownloadSupermercado
+        {
+            get 
+            {
+                if (baixarsupermercado == null)
+                {
+                    baixarsupermercado = new BaixarArquivoSupermercado();
+                }
+                return baixarsupermercado;
+            }
+        }
+
+        private static BaixarArquivoPreco baixarpreco;
+        public static BaixarArquivoPreco DownloadPrecos
+        {
+            get
+            {
+                if (baixarpreco == null)
+                {
+                    baixarpreco = new BaixarArquivoPreco();
+                }
+                return baixarpreco;
+            }
+        }
+
+
         
         
         
