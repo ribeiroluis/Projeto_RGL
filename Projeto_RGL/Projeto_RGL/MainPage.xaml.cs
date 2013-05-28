@@ -57,14 +57,15 @@ namespace Projeto_RGL
 
             foreach (var item in lista)
             {
+                bool parada = false;
                 string aux = "";
                 for (int i = 0; i < item.nome.Length; i++)
                 {
-                    if (i == 20 && item.nome[i].Equals(' ') || i == 21 && item.nome[i].Equals(' ') &&
-                        i == 22 && item.nome[i].Equals(' ') && i == 23 && item.nome[i].Equals(' ')
-                        && i == 24 && item.nome[i].Equals(' ') && i == 25 && item.nome[i].Equals(' ')
-                        && i == 26 && item.nome[i].Equals(' '))
+                    if (i > 20 && item.nome[i].Equals(' ') && parada == false)
+                    {
                         aux += "\n";
+                        parada = true;
+                    }
                     else
                         aux += item.nome[i];
 
