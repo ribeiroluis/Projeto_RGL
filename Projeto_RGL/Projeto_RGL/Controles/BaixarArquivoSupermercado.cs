@@ -38,7 +38,7 @@ namespace Projeto_RGL.Controles
             {
                 string[] result = (e.Result).Split('\n');
                 Lista = RetornaListaPreenchida(result);
-                App.Visao.InsereSupermercados(Lista);                
+                App.Visao.InsereSupermercados(Lista);
             }
 
         }

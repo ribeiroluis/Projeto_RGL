@@ -88,7 +88,7 @@ namespace Projeto_RGL.Controles
                 SupermercadoDB.CreateDatabase();
             }
             else
-                SupermercadoDB.CreateDatabase();
+                SupermercadoDB.CreateDatabase();            
         }
 
         public void InsereProdutos(List<BaixarArquivoProduto.ProdutoTXT> _listProdutos)
@@ -125,7 +125,7 @@ namespace Projeto_RGL.Controles
 
             SupermercadoDB.PrecoProduto.InsertAllOnSubmit<PrecoProdutoTabela>(PrecoProduto);
             SupermercadoDB.SubmitChanges();
-            MessageBox.Show("Banco de dados Preços atualizado!");
+            MessageBox.Show("Banco de dados Preços atualizado!");            
         }
         
         /// <summary>
@@ -153,9 +153,6 @@ namespace Projeto_RGL.Controles
 
             return lista;
         }     
-        
-        
-        
         
         public List<BaixarArquivoProduto.ProdutoTXT> PesquisaPreco(string Nome)
         {

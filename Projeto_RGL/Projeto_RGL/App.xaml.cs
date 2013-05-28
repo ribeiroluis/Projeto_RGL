@@ -81,10 +81,6 @@ namespace Projeto_RGL
         }
 
 
-        
-        
-        
-        
         /// <summary>
         /// Constructor for the Application object.
         /// </summary>

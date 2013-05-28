@@ -41,7 +41,7 @@ namespace Projeto_RGL
             {
                 string[] result = (e.Result).Split('\n');
                 Lista = RetornaListaPreenchida(result);
-                App.Visao.InsereProdutos(Lista);
+                App.Visao.InsereProdutos(Lista);                
             }
 
         }

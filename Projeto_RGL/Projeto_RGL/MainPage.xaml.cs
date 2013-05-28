@@ -28,7 +28,7 @@ namespace Projeto_RGL
                 App.Visao.CriarBD();
                 App.DownloadProdutos.Baixar();
                 App.DownloadSupermercado.Baixar();
-                App.DownloadPrecos.Baixar();
+                App.DownloadPrecos.Baixar();                
             }
             else
             {
@@ -57,7 +57,23 @@ namespace Projeto_RGL
 
             foreach (var item in lista)
             {
-                listview.Items.Add(item.nome);
+                string aux = "";
+                for (int i = 0; i < item.nome.Length; i++)
+                {
+                    if (i == 20 && item.nome[i].Equals(' ') || i == 21 && item.nome[i].Equals(' ') &&
+                        i == 22 && item.nome[i].Equals(' ') && i == 23 && item.nome[i].Equals(' ')
+                        && i == 24 && item.nome[i].Equals(' ') && i == 25 && item.nome[i].Equals(' ')
+                        && i == 26 && item.nome[i].Equals(' '))
+                        aux += "\n";
+                    else
+                        aux += item.nome[i];
+
+                }
+
+                aux += "\n";
+
+
+                listview.Items.Add(aux);
             }
         }
 
