@@ -27,8 +27,8 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <ListBox HorizontalAlignment="Left" Margin="0,154,0,6" Name="listview" Width="637" FontSize="26" />
-            <TextBox Height="72" HorizontalAlignment="Left" Margin="12,6,0,0" Name="txNomeProduto" Text="TextBox" VerticalAlignment="Top" Width="438" />
+            <ListBox HorizontalAlignment="Left" Margin="6,154,0,0" Name="listview" Width="450" FontSize="26" SelectionChanged="listview_SelectionChanged" DataContext="{Binding}" />
+            <TextBox Height="72" HorizontalAlignment="Left" Margin="12,6,0,0" Name="txtNomeProduto" Text="" VerticalAlignment="Top" Width="438" />
             <Button Content="Pesquisar" Height="72" HorizontalAlignment="Left" Margin="276,76,0,0" Name="btnPesquiar" VerticalAlignment="Top" Width="160" FontSize="18" Click="button1_Click_1" Visibility="Visible" />
         </Grid>
     </Grid>

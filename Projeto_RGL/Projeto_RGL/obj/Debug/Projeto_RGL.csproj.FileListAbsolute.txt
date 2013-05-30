@@ -22,3 +22,16 @@ C:\Users\LuisHenrique\Documents\Projetos\Projeto_RGL\Projeto_RGL\Projeto_RGL\obj
 C:\Users\LuisHenrique\Documents\Projetos\Projeto_RGL\Projeto_RGL\Projeto_RGL\obj\Debug\Projeto_RGL.dll
 C:\Users\LuisHenrique\Documents\Projetos\Projeto_RGL\Projeto_RGL\Projeto_RGL\obj\Debug\Projeto_RGL.pdb
 C:\Users\LuisHenrique\Documents\Projetos\Projeto_RGL\Projeto_RGL\Projeto_RGL\obj\Debug\XapCacheFile.xml
+C:\Users\Rodrigo\Documents\TI\Projeto_RGL\Projeto_RGL\Projeto_RGL\Projeto_RGL\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Rodrigo\Documents\TI\Projeto_RGL\Projeto_RGL\Projeto_RGL\Projeto_RGL\obj\Debug\App.g.i.cs
+C:\Users\Rodrigo\Documents\TI\Projeto_RGL\Projeto_RGL\Projeto_RGL\Projeto_RGL\obj\Debug\MainPage.g.i.cs
+C:\Users\Rodrigo\Documents\TI\Projeto_RGL\Projeto_RGL\Projeto_RGL\Projeto_RGL\obj\Debug\Projeto_RGL.g.resources
+C:\Users\Rodrigo\Documents\TI\Projeto_RGL\Projeto_RGL\Projeto_RGL\Projeto_RGL\obj\Debug\Projeto_RGL.dll
+C:\Users\Rodrigo\Documents\TI\Projeto_RGL\Projeto_RGL\Projeto_RGL\Projeto_RGL\Bin\Debug\ApplicationIcon.png
+C:\Users\Rodrigo\Documents\TI\Projeto_RGL\Projeto_RGL\Projeto_RGL\Projeto_RGL\Bin\Debug\Background.png
+C:\Users\Rodrigo\Documents\TI\Projeto_RGL\Projeto_RGL\Projeto_RGL\Projeto_RGL\Bin\Debug\Projeto_RGL.dll
+C:\Users\Rodrigo\Documents\TI\Projeto_RGL\Projeto_RGL\Projeto_RGL\Projeto_RGL\Bin\Debug\Projeto_RGL.pdb
+C:\Users\Rodrigo\Documents\TI\Projeto_RGL\Projeto_RGL\Projeto_RGL\Projeto_RGL\Bin\Debug\AppManifest.xaml
+C:\Users\Rodrigo\Documents\TI\Projeto_RGL\Projeto_RGL\Projeto_RGL\Projeto_RGL\Bin\Debug\Projeto_RGL.xap
+C:\Users\Rodrigo\Documents\TI\Projeto_RGL\Projeto_RGL\Projeto_RGL\Projeto_RGL\obj\Debug\Projeto_RGL.pdb
+C:\Users\Rodrigo\Documents\TI\Projeto_RGL\Projeto_RGL\Projeto_RGL\Projeto_RGL\obj\Debug\XapCacheFile.xml

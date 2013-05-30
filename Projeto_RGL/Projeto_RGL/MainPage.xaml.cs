@@ -53,7 +53,7 @@ namespace Projeto_RGL
         {
             listview.Items.Clear();
 
-            var lista = App.Visao.PesquisaPreco(txNomeProduto.Text);
+            var lista = App.Visao.PesquisaProduto(txtNomeProduto.Text);
 
             foreach (var item in lista)
             {
@@ -77,6 +77,17 @@ namespace Projeto_RGL
                 listview.Items.Add(aux);
             }
         }
+
+        private void listview_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+           string lista = App.Visao.PesquisaPreço((string)listview.SelectedItem);
+           listview.Items.Clear();
+           listview.Items.Add(lista);
+        }
+
+
+
 
     }
 }

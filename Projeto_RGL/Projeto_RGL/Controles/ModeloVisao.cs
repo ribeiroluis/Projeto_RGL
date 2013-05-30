@@ -154,7 +154,7 @@ namespace Projeto_RGL.Controles
             return lista;
         }     
         
-        public List<BaixarArquivoProduto.ProdutoTXT> PesquisaPreco(string Nome)
+        public List<BaixarArquivoProduto.ProdutoTXT> PesquisaProduto(string Nome)
         {
             List<BaixarArquivoProduto.ProdutoTXT> list = new List<BaixarArquivoProduto.ProdutoTXT>();
             BaixarArquivoProduto.ProdutoTXT p;
@@ -171,6 +171,24 @@ namespace Projeto_RGL.Controles
             }
 
             return list;
+        }
+
+        public string PesquisaPreço(string NomeProd)
+        {
+            string s = "";
+                        
+            var preco = from pre in SupermercadoDB.PrecoProduto
+                        join prod in SupermercadoDB.Produto on pre.ProdutoID equals prod.Id
+                        join sup in SupermercadoDB.Supermercado on pre.SupermercadoID equals sup.Id
+                        where prod.Nome == NomeProd
+                        select new { nome = prod.Nome, preco = (pre.Preco), Spmercado = sup.Nome };
+
+            foreach (var item in preco)
+            {
+                s += s + preco + "Produto:" + item.nome + "\nPreço" + item.preco + "\nSupermercado:" + item.Spmercado + "\n\n";                               
+            }
+            
+            return s;
         }
     }
 
