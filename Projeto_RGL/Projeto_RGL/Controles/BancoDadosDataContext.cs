@@ -211,7 +211,7 @@ namespace Projeto_RGL
         }
 
         [Column(Name = "ID", IsPrimaryKey = true, DbType = "INT NOT NULL", CanBeNull = false)]
-        public int Id
+        public int IdSupermercado
         {
             get { return _idsupermercado; }
             set

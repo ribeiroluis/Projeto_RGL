@@ -14,6 +14,16 @@ using System.Linq;
 
 namespace Projeto_RGL.Controles
 {
+    public class PrecosPesquisados
+    {
+        public string produto { get; set; }
+        public string preco { get; set; }
+        public string  supermercadonome { get; set; }
+        public string  supermercadoendereco { get; set; }
+        public string supermercadotelefone { get; set; }
+    }
+
+
     public class ModeloVisao
     {
         private DataContextBancodeDados SupermercadoDB;
@@ -108,7 +118,7 @@ namespace Projeto_RGL.Controles
         {
             foreach (var item in _listSupermercado)
             {
-                Supermercado.Add(new SupermercadoTabela { Id = item.idSupermercado, Nome = item.nome, Endereco = item.endereco, Telefone = item.telefone });
+                Supermercado.Add(new SupermercadoTabela { IdSupermercado = item.idSupermercado, Nome = item.nome, Endereco = item.endereco, Telefone = item.telefone });
             }
 
             SupermercadoDB.Supermercado.InsertAllOnSubmit<SupermercadoTabela>(Supermercado);
@@ -173,22 +183,49 @@ namespace Projeto_RGL.Controles
             return list;
         }
 
-        public string PesquisaPreço(string NomeProd)
+        public List<PrecosPesquisados> PesquisaPreço(string NomeProd)
         {
-            string s = "";
-                        
-            var preco = from pre in SupermercadoDB.PrecoProduto
-                        join prod in SupermercadoDB.Produto on pre.ProdutoID equals prod.Id
-                        join sup in SupermercadoDB.Supermercado on pre.SupermercadoID equals sup.Id
-                        where prod.Nome == NomeProd
-                        select new { nome = prod.Nome, preco = (pre.Preco), Spmercado = sup.Nome };
+            string aux = "";
 
-            foreach (var item in preco)
+            foreach (var item in NomeProd)
             {
-                s += s + preco + "Produto:" + item.nome + "\nPreço" + item.preco + "\nSupermercado:" + item.Spmercado + "\n\n";                               
+                if (!item.Equals('\n'))
+                    aux += item;
+                else
+                    aux += ' ';
             }
+            string auxprod = NomeProd;
+            NomeProd = aux;
+
+            var querypreco = from pre in SupermercadoDB.PrecoProduto
+                        join prod in SupermercadoDB.Produto on pre.ProdutoID equals prod.Id
+                        join sup in SupermercadoDB.Supermercado on pre.SupermercadoID equals sup.IdSupermercado
+                        where prod.Nome == NomeProd
+                        orderby pre.Preco
+                        select new { nome = prod.Nome, preco = (pre.Preco), SupNome = sup.Nome, SupEndereco = sup.Endereco,
+                            SupNumero = sup.Numero,SupBairro = sup.Bairro, Suptelefone = sup.Telefone };
+
+
+            List<PrecosPesquisados> lista = new List<PrecosPesquisados>();
+            PrecosPesquisados p;
+
+            foreach (var item in querypreco)
+            {
+                p = new PrecosPesquisados();
+                p.supermercadonome = item.SupNome;
+                p.supermercadoendereco = item.SupEndereco;
+                p.supermercadotelefone = item.Suptelefone;
+                p.supermercadoendereco = item.SupEndereco + ", " + item.SupNumero + " - " + item.SupBairro;
+                p.preco = (item.preco / 100).ToString("c");
+                p.produto = item.nome;
+                lista.Add(p);
+                
+                //s += s + preco + "Produto:" + item.nome + "\nPreço" + item.preco + "\nSupermercado:" + item.Spmercado + "\n\n";                               
+            }
+
+            return lista;
             
-            return s;
+            
         }
     }
 

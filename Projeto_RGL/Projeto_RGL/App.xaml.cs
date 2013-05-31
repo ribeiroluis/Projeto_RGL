@@ -80,6 +80,8 @@ namespace Projeto_RGL
             }
         }
 
+        public string ParametroProduto { get; set; }
+
 
         /// <summary>
         /// Constructor for the Application object.

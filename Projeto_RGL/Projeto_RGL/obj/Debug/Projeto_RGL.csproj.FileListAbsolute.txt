@@ -35,3 +35,6 @@ C:\Users\Rodrigo\Documents\TI\Projeto_RGL\Projeto_RGL\Projeto_RGL\Projeto_RGL\Bi
 C:\Users\Rodrigo\Documents\TI\Projeto_RGL\Projeto_RGL\Projeto_RGL\Projeto_RGL\Bin\Debug\Projeto_RGL.xap
 C:\Users\Rodrigo\Documents\TI\Projeto_RGL\Projeto_RGL\Projeto_RGL\Projeto_RGL\obj\Debug\Projeto_RGL.pdb
 C:\Users\Rodrigo\Documents\TI\Projeto_RGL\Projeto_RGL\Projeto_RGL\Projeto_RGL\obj\Debug\XapCacheFile.xml
+C:\Users\LuisHenrique\Documents\Projetos\Projeto_RGL\Projeto_RGL\Projeto_RGL\Bin\Debug\Microsoft.Phone.Controls.dll
+C:\Users\LuisHenrique\Documents\Projetos\Projeto_RGL\Projeto_RGL\Projeto_RGL\Bin\Debug\Microsoft.Phone.Controls.xml
+C:\Users\LuisHenrique\Documents\Projetos\Projeto_RGL\Projeto_RGL\Projeto_RGL\obj\Debug\ResultadoPrecos.g.i.cs

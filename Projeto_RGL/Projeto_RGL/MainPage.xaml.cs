@@ -13,6 +13,7 @@ using Microsoft.Phone.Controls;
 using System.Net.NetworkInformation;
 using System.ComponentModel;
 using Microsoft.Phone.Shell;
+using Projeto_RGL.Controles;
 
 namespace Projeto_RGL
 {
@@ -51,14 +52,18 @@ namespace Projeto_RGL
        
         private void button1_Click_1(object sender, RoutedEventArgs e)
         {
+            listview.IsEnabled = true;
+            
             listview.Items.Clear();
 
             var lista = App.Visao.PesquisaProduto(txtNomeProduto.Text);
+            
 
             foreach (var item in lista)
             {
                 bool parada = false;
                 string aux = "";
+                
                 for (int i = 0; i < item.nome.Length; i++)
                 {
                     if (i > 20 && item.nome[i].Equals(' ') && parada == false)
@@ -70,10 +75,6 @@ namespace Projeto_RGL
                         aux += item.nome[i];
 
                 }
-
-                aux += "\n";
-
-
                 listview.Items.Add(aux);
             }
         }
@@ -81,9 +82,34 @@ namespace Projeto_RGL
         private void listview_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             
-           string lista = App.Visao.PesquisaPreço((string)listview.SelectedItem);
-           listview.Items.Clear();
-           listview.Items.Add(lista);
+           
+        }
+
+        private void listview_Tap(object sender, GestureEventArgs e)
+        {
+            listview.IsEnabled = false;
+            //var lista = App.Visao.PesquisaPreço((string)listview.SelectedItem);
+            
+            string aux = "";
+            string NomeProd = (string)listview.SelectedItem;
+            
+            /*foreach (var item in NomeProd)
+            {
+                if (!item.Equals('\n'))
+                    aux += item;
+                else
+                    aux += ' ';
+            }*/            
+           
+            //Resultados result = new Resultados(lista);
+            
+            var app = (Application.Current as App);
+            //Adicionamos o Texto na Variável Global
+            app.ParametroProduto = NomeProd;
+            //Chamamos a página que receberá o Dado
+            NavigationService.Navigate(new Uri("/ResultadoPrecos.xaml", UriKind.Relative)); 
+            
+            
         }
 
 
