@@ -11,6 +11,7 @@ using System.Windows.Shapes;
 using System.Data.Linq;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace Projeto_RGL.Controles
 {
@@ -118,7 +119,10 @@ namespace Projeto_RGL.Controles
         {
             foreach (var item in _listSupermercado)
             {
-                Supermercado.Add(new SupermercadoTabela { IdSupermercado = item.idSupermercado, Nome = item.nome, Endereco = item.endereco, Telefone = item.telefone });
+                Encoding d = Encoding.UTF8;
+
+
+                Supermercado.Add(new SupermercadoTabela { IdSupermercado = item.idSupermercado, Nome = item.nome, Endereco = item.endereco, Telefone = item.telefone, Bairro = item.bairro, Numero = int.Parse(item.numero) });
             }
 
             SupermercadoDB.Supermercado.InsertAllOnSubmit<SupermercadoTabela>(Supermercado);
@@ -215,8 +219,8 @@ namespace Projeto_RGL.Controles
                 p.supermercadonome = item.SupNome;
                 p.supermercadoendereco = item.SupEndereco;
                 p.supermercadotelefone = item.Suptelefone;
-                p.supermercadoendereco = item.SupEndereco + ", " + item.SupNumero + " - " + item.SupBairro;
-                p.preco = (item.preco / 100).ToString("c");
+                p.supermercadoendereco = item.SupEndereco + ", " + item.SupNumero + "\n" + item.SupBairro;
+                p.preco = (item.preco).ToString("c");
                 p.produto = item.nome;
                 lista.Add(p);
                 

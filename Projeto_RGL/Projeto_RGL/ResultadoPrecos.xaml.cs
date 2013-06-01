@@ -24,10 +24,13 @@ namespace Projeto_RGL
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
+            listDados.Items.Clear();
             var app = (Application.Current as App);
             nomePoduto = app.ParametroProduto;
             base.OnNavigatedTo(e);
             MessageBox.Show(nomePoduto);
+            PageTitle.Text = nomePoduto;
+
             var lista = App.Visao.PesquisaPreço(nomePoduto);
 
             foreach (var item in lista)

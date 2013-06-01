@@ -19,6 +19,8 @@ namespace Projeto_RGL.Controles
             public int idSupermercado;
             public string nome;
             public string endereco;
+            public string numero;
+            public string bairro;
             public string telefone;
         }
 
@@ -57,7 +59,9 @@ namespace Projeto_RGL.Controles
                 x.idSupermercado = int.Parse(aux[0]);
                 x.nome = aux[1];
                 x.endereco = aux[2];
-                x.telefone = aux[3];
+                x.numero = aux[3];
+                x.bairro = aux[4];
+                x.telefone = aux[5];
 
                 Lista.Add(x);
             }

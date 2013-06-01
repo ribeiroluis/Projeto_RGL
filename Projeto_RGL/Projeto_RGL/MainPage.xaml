@@ -12,14 +12,37 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="True">
+	<phone:PhoneApplicationPage.Resources>
+		<Style x:Key="ButtonStyle1" TargetType="Button">
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Button"/>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<Style x:Key="BtnBuscar" TargetType="Button">
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Button">
+						<Canvas>
+							<Canvas.Background>
+								<ImageBrush Stretch="Fill" ImageSource="1370070650_Search-icon.png"/>
+							</Canvas.Background>
+							<ContentPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Height="45" Width="51" Content=""/>
+						</Canvas>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</phone:PhoneApplicationPage.Resources>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot">
     	<Grid.Background>
-    		<RadialGradientBrush>
+    		<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
     			<GradientStop Color="#FFF2F5FB"/>
     			<GradientStop Color="#FF265FEB" Offset="1"/>
-    		</RadialGradientBrush>
+    		</LinearGradientBrush>
     	</Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -28,14 +51,19 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="PageTitle" Text="Qual o preço?" Margin="9,-7,0,0" FontSize="40" />
+            <TextBlock x:Name="PageTitle" Text="Qual o preço?" Margin="9,-7,0,0" FontSize="40" Foreground="#FF2B80F1" />
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <ListBox HorizontalAlignment="Left" Margin="6,154,0,0" Name="listview" Width="450" FontSize="26" SelectionChanged="listview_SelectionChanged" DataContext="{Binding}" Tap="listview_Tap" />
-            <TextBox Height="72" HorizontalAlignment="Left" Margin="12,6,0,0" Name="txtNomeProduto" Text="" VerticalAlignment="Top" Width="438" />
-            <Button Content="Pesquisar" Height="72" HorizontalAlignment="Left" Margin="276,76,0,0" Name="btnPesquiar" VerticalAlignment="Top" Width="160" FontSize="18" Click="button1_Click_1" Visibility="Visible" />
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,8,0,8">
+            <Canvas Margin="0,0,8,8" Opacity="0.455" HorizontalAlignment="Right" Height="99" VerticalAlignment="Bottom" Width="97">
+            	<Canvas.Background>
+            		<ImageBrush Stretch="Fill" ImageSource="fundo.png"/>
+            	</Canvas.Background>
+            </Canvas>
+            <ListBox HorizontalAlignment="Center" Margin="10,152,0,8" x:Name="listview" Width="452" FontSize="26" SelectionChanged="listview_SelectionChanged" DataContext="{Binding}" Tap="listview_Tap" BorderBrush="Black" Background="#0049F2FF" Foreground="#FFFDFF0B" Grid.RowSpan="6" />
+            <TextBox Height="72" HorizontalAlignment="Left" Margin="12,6,0,0" x:Name="txtNomeProduto" Text="" VerticalAlignment="Top" Width="438" Foreground="#FF231DF5" />
+            <Button Content="Button" Height="57" Margin="0,78,29,0" Style="{StaticResource BtnBuscar}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="56" RenderTransformOrigin="0.128,0.235" Click="Button_Click" />
         </Grid>
     </Grid>
  

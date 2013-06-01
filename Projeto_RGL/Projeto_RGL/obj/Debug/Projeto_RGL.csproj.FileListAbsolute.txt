@@ -38,3 +38,4 @@ C:\Users\Rodrigo\Documents\TI\Projeto_RGL\Projeto_RGL\Projeto_RGL\Projeto_RGL\ob
 C:\Users\LuisHenrique\Documents\Projetos\Projeto_RGL\Projeto_RGL\Projeto_RGL\Bin\Debug\Microsoft.Phone.Controls.dll
 C:\Users\LuisHenrique\Documents\Projetos\Projeto_RGL\Projeto_RGL\Projeto_RGL\Bin\Debug\Microsoft.Phone.Controls.xml
 C:\Users\LuisHenrique\Documents\Projetos\Projeto_RGL\Projeto_RGL\Projeto_RGL\obj\Debug\ResultadoPrecos.g.i.cs
+C:\Users\LuisHenrique\Documents\Projetos\Projeto_RGL\Projeto_RGL\Projeto_RGL\obj\Debug\Projeto_RGL.csprojResolveAssemblyReference.cache

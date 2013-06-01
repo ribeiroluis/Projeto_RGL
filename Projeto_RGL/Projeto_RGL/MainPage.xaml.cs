@@ -15,6 +15,7 @@ using System.ComponentModel;
 using Microsoft.Phone.Shell;
 using Projeto_RGL.Controles;
 
+
 namespace Projeto_RGL
 {
     public partial class MainPage : PhoneApplicationPage
@@ -29,7 +30,8 @@ namespace Projeto_RGL
                 App.Visao.CriarBD();
                 App.DownloadProdutos.Baixar();
                 App.DownloadSupermercado.Baixar();
-                App.DownloadPrecos.Baixar();                
+                App.DownloadPrecos.Baixar();
+                listview.IsEnabled = false;
             }
             else
             {
@@ -52,18 +54,66 @@ namespace Projeto_RGL
        
         private void button1_Click_1(object sender, RoutedEventArgs e)
         {
-            listview.IsEnabled = true;
+           
+        }
+
+        private void listview_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
             
+           
+        }
+
+        private void listview_Tap(object sender, GestureEventArgs e)
+        {
+
+
+            if (listview.SelectedItem.Equals("-------------------------------\n"))
+            {
+                MessageBox.Show("Selecione o nome corretamente");
+                listview.IsEnabled = true;
+            }
+            else
+            {
+                listview.IsEnabled = false;
+                //var lista = App.Visao.PesquisaPreço((string)listview.SelectedItem);
+
+                string aux = "";
+                string NomeProd = (string)listview.SelectedItem;
+
+                /*foreach (var item in NomeProd)
+                {
+                    if (!item.Equals('\n'))
+                        aux += item;
+                    else
+                        aux += ' ';
+                }*/
+
+                //Resultados result = new Resultados(lista);
+
+                var app = (Application.Current as App);
+                //Adicionamos o Texto na Variável Global
+                app.ParametroProduto = NomeProd;
+                //Chamamos a página que receberá o Dado
+                NavigationService.Navigate(new Uri("/ResultadoPrecos.xaml", UriKind.Relative));
+            }
+            
+            
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            listview.IsEnabled = true;
+
             listview.Items.Clear();
 
             var lista = App.Visao.PesquisaProduto(txtNomeProduto.Text);
-            
+
 
             foreach (var item in lista)
             {
                 bool parada = false;
                 string aux = "";
-                
+
                 for (int i = 0; i < item.nome.Length; i++)
                 {
                     if (i > 20 && item.nome[i].Equals(' ') && parada == false)
@@ -76,40 +126,9 @@ namespace Projeto_RGL
 
                 }
                 listview.Items.Add(aux);
+                listview.Items.Add("-------------------------------\n");
+                
             }
-        }
-
-        private void listview_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            
-           
-        }
-
-        private void listview_Tap(object sender, GestureEventArgs e)
-        {
-            listview.IsEnabled = false;
-            //var lista = App.Visao.PesquisaPreço((string)listview.SelectedItem);
-            
-            string aux = "";
-            string NomeProd = (string)listview.SelectedItem;
-            
-            /*foreach (var item in NomeProd)
-            {
-                if (!item.Equals('\n'))
-                    aux += item;
-                else
-                    aux += ' ';
-            }*/            
-           
-            //Resultados result = new Resultados(lista);
-            
-            var app = (Application.Current as App);
-            //Adicionamos o Texto na Variável Global
-            app.ParametroProduto = NomeProd;
-            //Chamamos a página que receberá o Dado
-            NavigationService.Navigate(new Uri("/ResultadoPrecos.xaml", UriKind.Relative)); 
-            
-            
         }
 
 
