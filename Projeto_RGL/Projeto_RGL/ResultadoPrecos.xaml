@@ -34,7 +34,7 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,8,12,0">
-            <ListBox Height="531" Margin="12,8,60,0" Name="listDados" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="#FFF7F7F7" FontSize="26.667" Foreground="#FF0B2BAB" FontWeight="Bold" />
+            <ListBox Height="531" Margin="12,8,0,0" Name="listDados" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="#FFF7F7F7" FontSize="24" Foreground="#FF0B2BAB" HorizontalAlignment="Left" Width="436" Tap="listDados_Tap" />
         </Grid>
     </Grid>
  
